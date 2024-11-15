@@ -1,0 +1,92 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 1fr auto;
+}
+
+.item {
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.navPanel {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    background-color: aquamarine;
+    height: 50px;
+    display: flex;
+}
+
+.leftPanel {
+    background-color: white;
+    height: auto;
+    overflow: hidden;
+    border-radius: 20px; /* Радиус скругления углов */
+    border: 0px;
+    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
+.mainPanel {
+    background-color: white ;
+    height: auto;
+    overflow-y: auto;
+    border-radius: 20px; /* Радиус скругления углов */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для контейнера */
+}
+
+.rightPanel {
+    background-color: aqua;
+    height: auto;
+    overflow: hidden;
+    border-radius: 20px; /* Радиус скругления углов */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для контейнера */
+}
+
+.buttonLeftPanel {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 0px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: 95%;
+}
+
+.buttonSearch {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 0px solid #ccc;
+    border-radius: 5px;
+    margin-left: 0%;
+    width: 50%;
+    padding: 10px;
+    margin: 10px;
+    background-color: rgb(188, 188, 188);
+}
+
+.buttonLeftPanel:hover {
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.buttonLeftPanel:active {
+    border: none;
+}
+
+
+.textButton {
+    font-size: 18px; 
+    color: #333; 
+}
+
+.textSearchButton {
+    font-size: 22px;
+    color: #333;
+}
+
+.iconSber {
+    width: 20%;
+    height: 50px;
+}
