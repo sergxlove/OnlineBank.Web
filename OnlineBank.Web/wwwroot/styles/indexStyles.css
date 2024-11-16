@@ -32,7 +32,7 @@ body {
 }
 
 .mainPanel {
-    background-color: #e8e8e8 ;
+    background-color: #f1f1f1 ;
     height: auto;
     overflow-y: auto;
     border-radius: 20px; 
@@ -59,6 +59,16 @@ body {
     margin: 10px;
     width: 95%;
     font-family: Arial;
+    cursor: pointer;
+}
+
+.buttonLeftPanel:hover {
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.buttonLeftPanel:active {
+    border: none;
 }
 
 .buttonSearch {
@@ -76,15 +86,14 @@ body {
     margin-left: 7%;
 }
 
-.buttonLeftPanel:hover {
+.buttonSearch:hover {
     border: 1px solid #ccc;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.buttonLeftPanel:active {
+.buttonSearch:active {
     border: none;
 }
-
 
 .textButton {
     font-size: 18px; 
@@ -103,46 +112,6 @@ body {
     height: 35px;
 }
 
-.buttonService {
-    display: flex;
-    align-items: center;
-    background-color: #fff;
-    border: 0px solid #ccc;
-    border-radius: 5px;
-    margin-left: 0%;
-    width: 10%;
-    padding: 10px;
-    margin: 10px;
-    background-color: #e8e8e8;
-    height: 50px;
-}
-
-.textServiceButton {
-    font-size: 22px;
-    color: #333;
-    font-family: Arial;
-}
-
-.buttonExit {
-    display: flex;
-    align-items: center;
-    background-color: #fff;
-    border: 0px solid #ccc;
-    border-radius: 5px;
-    margin-left: 0%;
-    width: 6%;
-    padding: 10px;
-    margin: 10px;
-    background-color: #e8e8e8;
-    height: 50px;
-}
-
-.textExitButton {
-    font-size: 22px;
-    color: #333;
-    font-family: Arial;
-}
-
 .buttonLeftPanel>img {
     border: 0px;
     width: 18px;
@@ -155,8 +124,39 @@ body {
     width: 50px;
     height: 50px;
     margin: 10px;
-    margin-left: 10%;
+    margin-left: 15%;
+}
 
+.serviceImg {
+    border: 0px;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+}
+
+.serviceImg:hover {
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.serviceImg:active {
+    border: none;
+}
+
+.exitImg {
+    border: 0px;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+}
+
+.exitImg:hover {
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.exitImg:active {
+    border: none;
 }
 
 .nickName {

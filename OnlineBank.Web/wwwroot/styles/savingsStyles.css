@@ -1,0 +1,28 @@
+.panel {
+    width: 95%;
+    height: 50px; /* Начальная высота */
+    overflow: hidden; /* Скрыть содержимое, выходящее за пределы */
+    border: 0px solid #000; /* Чёрная граница */
+    transition: height 0.3s ease; /* Плавный переход для высоты */
+    margin-bottom: 10px; /* Отступ между div'ами */
+    background-color: #e8e8e8;
+    border-radius: 20px;
+}
+
+.textPanel {
+    margin-left: 3%;
+    display: flex;
+}
+
+.textPanel>h2 {
+    margin-right: 5%;
+}
+
+.vp {
+    color: grey;
+}
+
+h1 {
+    margin-block-start: 0;
+    margin-inline-end: 0;
+}
