@@ -9,9 +9,33 @@
     border-radius: 20px;
 }
 
+.dopPanel {
+    width: 95%;
+    height: 100px; /* Начальная высота */
+    overflow: hidden; /* Скрыть содержимое, выходящее за пределы */
+    border: 0px solid #000; /* Чёрная граница */
+    transition: height 0.3s ease; /* Плавный переход для высоты */
+    margin-bottom: 10px; /* Отступ между div'ами */
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    margin-left: 3%;
+}
+
 .textPanel {
     margin-left: 3%;
     display: flex;
+}
+
+.mainP {
+    margin: 0;
+    margin-left: 3%;
+    font-size: 22;
+}
+
+.dopPanel>p {
+    margin: 0;
+    margin-top: 2%;
+    margin-left: 3%;
 }
 
 .textPanel>h2 {
@@ -25,4 +49,12 @@
 h1 {
     margin-block-start: 0;
     margin-inline-end: 0;
+}
+
+.th1 {
+    width: 50%;
+}
+
+.th2 {
+    width: 25%;
 }
