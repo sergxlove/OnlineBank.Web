@@ -9,6 +9,15 @@
     border-radius: 20px;
 }
 
+.panel:hover {
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.panel:active {
+    border: none;
+}
+
 .dopPanel {
     width: 95%;
     height: 100px; /* Начальная высота */
@@ -19,6 +28,7 @@
     background-color: #f5f5f5;
     border-radius: 20px;
     margin-left: 3%;
+    display: flex;
 }
 
 .textPanel {
@@ -32,10 +42,20 @@
     font-size: 22;
 }
 
-.dopPanel>p {
+.dopPanelText {
+    width: 90%;
+}
+
+.dopPanelText >p {
     margin: 0;
     margin-top: 2%;
     margin-left: 3%;
+}
+
+.dopPanelImg>img {
+    width: 50px;
+    height: 50px;
+    margin: 10%;
 }
 
 .textPanel>h2 {
@@ -51,10 +71,29 @@ h1 {
     margin-inline-end: 0;
 }
 
-.th1 {
-    width: 50%;
+.courseMoney {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.th2 {
-    width: 25%;
+.courseMoney >tr, td {
+    border: 0px solid black;
+    border-bottom: 1px solid black;
+    text-align: center;
+    padding: 10px;
+}
+
+.col1 {
+    text-align: left;
+}
+
+.col1 {
+    width: 70%;
+}
+.col2, .col3 {
+    width: 15%; 
+}
+
+.courseMoney>th , td >p {
+    margin: 0px;
 }
