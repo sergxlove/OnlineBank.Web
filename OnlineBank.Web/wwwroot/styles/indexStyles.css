@@ -125,6 +125,7 @@ body {
     height: 50px;
     margin: 10px;
     margin-left: 15%;
+    border-radius: 50px;
 }
 
 .serviceImg {
@@ -149,8 +150,6 @@ body {
     height: 50px;
     margin: 10px;
 }
-
-
 
 .exitImg:hover {
     border: 1px solid #ccc;

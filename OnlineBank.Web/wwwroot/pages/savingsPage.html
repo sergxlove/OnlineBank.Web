@@ -44,8 +44,13 @@
                     <h2 id="vp1" class="vp"> v</h2>
                 </div>
                 <div class="dopPanel" onclick="location.href='../pages/operationPage.html'">
-                    <p class="mainP"><b>Откройте вклад онлайн</b></p>
-                    <p>Просто, быстро, удобно. От 1000 рублей</p>
+                    <div class="dopPanelImg">
+                        <img src="../resourse/Images/savingPicture.png" alt="savingPicture">
+                    </div>
+                    <div class="dopPanelText">
+                        <p class="mainP"><b>Откройте вклад онлайн</b></p>
+                        <p>Просто, быстро, удобно. От 1000 рублей</p>
+                    </div>
                 </div>
             </div>
             <div id="panel2" class="panel" onclick="toggleDiv(2);">
@@ -54,8 +59,13 @@
                     <h2 id="vp2" class="vp">v</h2>
                 </div>
                 <div class="dopPanel" onclick="location.href='../pages/operationPage.html'">
-                    <p class="mainP"><b>Создайте новую цель</b></p>
-                    <p>Начните копить прямо сейчас</p>
+                    <div class="dopPanelImg">
+                        <img src="../resourse/Images/targetPicture.png" alt="targetPicture">
+                    </div>
+                    <div class="dopPanelText">
+                        <p class="mainP"><b>Создайте новую цель</b></p>
+                        <p>Начните копить прямо сейчас</p>
+                    </div>
                 </div>
             </div>
             <div id="panel3" class="panel" onclick="toggleDiv(3);">
@@ -64,8 +74,13 @@
                     <h2 id="vp3" class="vp">v</h2>
                 </div>
                 <div class="dopPanel" onclick="location.href='../pages/operationPage.html'">
-                    <p class="mainP"><b>Начните инвестировать</b></p>
-                    <p>Инвестиции со Сбер - это просто</p>
+                    <div class="dopPanelImg">
+                        <img src="../resourse/Images/investingPicture.png" alt="investingPicture">
+                    </div>
+                    <div class="dopPanelText">
+                        <p class="mainP"><b>Начните инвестировать</b></p>
+                        <p>Инвестиции со Сбер - это просто</p>
+                    </div>
                 </div>
             </div>
             <div id="panel4" class="panel" onclick="toggleDiv(4);">
@@ -74,8 +89,13 @@
                     <h2 id="vp4" class="vp">v</h2>
                 </div>
                 <div class="dopPanel" onclick="location.href='../pages/operationPage.html'">
-                    <p class="mainP"><b>Откройте обезличенный металлический счет</b></p>
-                    <p>Бесплатное открытие и ведение</p>
+                    <div class="dopPanelImg">
+                        <img src="../resourse/Images/metallPicture.png" alt="metallPicture">
+                    </div>
+                    <div class="dopPanelText">
+                        <p class="mainP"><b>Откройте обезличенный металлический счет</b></p>
+                        <p>Бесплатное открытие и ведение</p>
+                    </div>
                 </div>
             </div>
             <div id="panel5" class="panel" onclick="toggleDiv(5);">
@@ -84,8 +104,13 @@
                     <h2 id="vp5" class="vp">v</h2>
                 </div>
                 <div class="dopPanel" onclick="location.href='../pages/operationPage.html'">
-                    <p class="mainP"><b>Рассчитайте пенсию</b></p>
-                    <p>Расчитать пенсию можно прямо сейчас</p>
+                    <div class="dopPanelImg">
+                        <img src="../resourse/Images/pensiaPicture.png" alt="pensiaPicture">
+                    </div>
+                    <div class="dopPanelText">
+                            <p class="mainP"><b>Рассчитайте пенсию</b></p>
+                            <p>Расчитать пенсию можно прямо сейчас</p>
+                    </div>
                 </div>
             </div>
             <div id="panel6" class="panel" onclick="toggleDiv(6);">
@@ -94,10 +119,15 @@
                     <h2 id="vp6" class="vp">v</h2>
                 </div>
                 <div class="dopPanel" onclick="location.href='../pages/operationPage.html'">
-                    <p class="mainP"><b>У вас нет подключенных счетов депо</b></p>
-                    <p>Подтвердите согласие на внесение изменений в "Анкету физического лица" для получения услуг
-                        депозитного обслуживания в Сбербанк Онлайн.
-                    </p>
+                    <div class="dopPanelImg">
+                        <img src="../resourse/Images/depoPicture.png" alt="depoPicture">
+                    </div>
+                    <div class="dopPanelText">
+                        <p class="mainP"><b>У вас нет подключенных счетов депо</b></p>
+                        <p>Подтвердите согласие на внесение изменений в "Анкету физического лица" для получения услуг
+                            депозитного обслуживания в Сбербанк Онлайн.
+                        </p>
+                    </div>
                 </div>
             </div>
             <div id="panel7" class="panel" onclick="toggleDivCustom(7, 300);">
@@ -106,22 +136,81 @@
                     <h2 id="vp7" class="vp">v</h2>
                 </div>
                 <table class="courseMoney">
-                    <thead>
-                        <tr>
-                            <th class="th1"></th>
-                            <th class="th2">Купить</th>
-                            <th class="th2">Продать</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
+                    <tr>
+                        <th class="col1"></th>
+                        <th class="col2">Купить</th>
+                        <th class="col3">Продать</th>
+                    </tr>
+                    <tr>
+                        <td class="col1">
+                            <p><b>CNY</b></p>
+                            <p>Юань</p>
+                        </td>
+                        <td class="col2">13,87</td>
+                        <td class="col3">13,53</td>
+                    </tr>
+                    <tr>
+                        <td class="col1">
+                            <p><b>USD</b></p>
+                            <p>Доллар</p>
+                        </td>
+                        <td class="col2">103,20</td>
+                        <td class="col3">96,40</td>
+                    </tr>
+                    <tr>
+                        <td class="col1">
+                            <p><b>AED</b></p>
+                            <p>Дирхам</p>
+                        </td>
+                        <td class="col2">26,60</td>
+                        <td class="col3">26,41</td>
+                    </tr>
                 </table>
             </div>
-            <div id="panel8" class="panel" onclick="toggleDiv(8);">
+            <div id="panel8" class="panel" onclick="toggleDivCustom(8, 350);">
                 <div class="textPanel">
                     <h2>Курсы металлов</h2>
                     <h2 id="vp8" class="vp">v</h2>
                 </div>
-                <div class="dopPanel"></div>
+                <table class="courseMoney">
+                    <tr>
+                        <th class="col1"></th>
+                        <th class="col2">Купить</th>
+                        <th class="col3">Продать</th>
+                    </tr>
+                    <tr>
+                        <td class="col1">
+                            <p><b>Золото</b></p>
+                            <p>Au</p>
+                        </td>
+                        <td class="col2">8599</td>
+                        <td class="col3">8018</td>
+                    </tr>
+                    <tr>
+                        <td class="col1">
+                            <p><b>Серебро</b></p>
+                            <p>Ag</p>
+                        </td>
+                        <td class="col2">104,29</td>
+                        <td class="col3">93,73</td>
+                    </tr>
+                    <tr>
+                        <td class="col1">
+                            <p><b>Платина</b></p>
+                            <p>Pt</p>
+                        </td>
+                        <td class="col2">3240</td>
+                        <td class="col3">2871</td>
+                    </tr>
+                    <tr>
+                        <td class="col1">
+                            <p><b>Палладий</b></p>
+                            <p>Pd</p>
+                        </td>
+                        <td class="col2">3375</td>
+                        <td class="col3">2970</td>
+                    </tr>
+                </table>
             </div>
         </div>
         <div class="item rightPanel">
