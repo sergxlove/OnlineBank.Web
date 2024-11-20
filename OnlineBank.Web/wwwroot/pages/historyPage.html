@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>History</title>
     <link rel="stylesheet" href="../styles/indexStyles.css">
+    <link rel="stylesheet" href="../styles/historyStyles.css">
 </head>
 <body>
     <div class="container">
@@ -36,11 +37,23 @@
             </button>
         </div>
         <div class="item mainPanel">
-           
+            <h1>История</h1>
+            <div id="panel1" class="panel">
+                <div class="textPanel">
+                    <h2 id="datetime">Дата и время</h2>
+                </div>
+                <div class="dopPanel" onclick="location.href='../pages/operationPage.html'">
+                    <div class="dopPanelText">
+                        <p class="mainP"><b>История покупок и поступлений</b></p>
+                        <p>Совершайте покупки и они будут здесь отображаться</p>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="item rightPanel">
 
         </div>
     </div>
+    <script src="../scripts/historyPageScript.js"></script>
 </body>
 </html>
