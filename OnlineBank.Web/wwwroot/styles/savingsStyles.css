@@ -1,10 +1,10 @@
 .panel {
     width: 95%;
-    height: 50px; /* Начальная высота */
-    overflow: hidden; /* Скрыть содержимое, выходящее за пределы */
-    border: 0px solid #000; /* Чёрная граница */
-    transition: height 0.3s ease; /* Плавный переход для высоты */
-    margin-bottom: 10px; /* Отступ между div'ами */
+    height: 50px; 
+    overflow: hidden; 
+    border: 0px solid #000; 
+    transition: height 0.3s ease; 
+    margin-bottom: 10px; 
     background-color: #e8e8e8;
     border-radius: 20px;
 }
@@ -20,11 +20,11 @@
 
 .dopPanel {
     width: 95%;
-    height: 100px; /* Начальная высота */
-    overflow: hidden; /* Скрыть содержимое, выходящее за пределы */
-    border: 0px solid #000; /* Чёрная граница */
-    transition: height 0.3s ease; /* Плавный переход для высоты */
-    margin-bottom: 10px; /* Отступ между div'ами */
+    height: 100px; 
+    overflow: hidden; 
+    border: 0px solid #000; 
+    transition: height 0.3s ease; 
+    margin-bottom: 10px; 
     background-color: #f5f5f5;
     border-radius: 20px;
     margin-left: 3%;
