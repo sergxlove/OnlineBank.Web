@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
     <link rel="stylesheet" href="styles/indexStyles.css">
+    <link rel="stylesheet" href="styles/mainStyles.css">
 </head>
 <body>
     <div class="container">
@@ -36,11 +37,85 @@
             </button>
         </div>
         <div class="item mainPanel">
-           
+            <div class="panel">
+                <h1>Кошелёк</h1>
+                <div class="containerPanels">
+                    <div class="panelWallet" id="balance">
+                        <p>****</p>
+                        <p>Счёт ** 9870</p>
+                    </div>
+                    <div class="panelWallet" id="sberSpasibo">
+                        <p>****</p>
+                        <p>СберСпасибо</p>
+                    </div>
+                    <div class="panelWallet" id="newItem">
+                        <h3>Оформить</h3>
+                        <p>карту или счёт</p>
+                    </div>
+                    <div class="panelWallet" id="allItem">
+                        <h3>Все счета</h3>
+                        <p>карты и бонусы</p>
+                    </div>
+
+                </div>
+            </div>
+            <div id="panel1" class="smallPanel" onclick="toggleDiv(1);">
+                <div class="textPanel">
+                    <h2>Вклады и счета</h2>
+                    <h2 id="vp1" class="vp">v</h2>
+                </div>
+                <div class="dopPanel" onclick="location.href='../pages/operationPage.html'">
+                    <div class="dopPanelText">
+                        <p class="mainP"><b>Теперь в разделе накопления</b></p>
+                        <p>Найти ваши вклады и счета и оформить новые теперь можно в обновленном разделе</p>
+                        <p class="goSaving"><b>Перейти в Накопления</b></p>
+                    </div>
+                </div>
+            </div>
+            <div id="panel2" class="smallPanel" onclick="toggleDiv(2);">
+                <div class="textPanel">
+                    <h2>Инвестиции</h2>
+                    <h2 id="vp1" class="vp">v</h2>
+                </div>
+                <div class="dopPanel" onclick="location.href='../pages/operationPage.html'">
+                    <div class="dopPanelText">
+                        <p class="mainP"><b>Теперь в разделе накопления</b></p>
+                        <p>Найти ваши вклады и счета и оформить новые теперь можно в обновленном разделе</p>
+                        <p class="goSaving"><b>Перейти в Накопления</b></p>
+                    </div>
+                </div>
+            </div>
+            <div id="panel3" class="smallPanel" onclick="toggleDiv(3);">
+                <div class="textPanel">
+                    <h2>Кредиты</h2>
+                    <h2 id="vp1" class="vp">v</h2>
+                </div>
+                <div class="dopPanel" onclick="location.href='../pages/operationPage.html'">
+                    <div class="dopPanelText">
+                        <p class="mainP"><b>Теперь в разделе накопления</b></p>
+                        <p>Найти ваши вклады и счета и оформить новые теперь можно в обновленном разделе</p>
+                        <p class="goSaving"><b>Перейти в Накопления</b></p>
+                    </div>
+                </div>
+            </div>
+            <div id="panel4" class="smallPanel" onclick="toggleDiv(4);">
+                <div class="textPanel">
+                    <h2>Страхование</h2>
+                    <h2 id="vp1" class="vp">v</h2>
+                </div>
+                <div class="dopPanel" onclick="location.href='../pages/operationPage.html'">
+                    <div class="dopPanelText">
+                        <p class="mainP"><b>Теперь в разделе накопления</b></p>
+                        <p>Найти ваши вклады и счета и оформить новые теперь можно в обновленном разделе</p>
+                        <p class="goSaving"><b>Перейти в Накопления</b></p>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="item rightPanel">
 
         </div>
     </div>
+    <script src="scripts/indexScript.js"></script>
 </body>
 </html>
