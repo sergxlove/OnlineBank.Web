@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineBank.Web", "OnlineBank.Web\OnlineBank.Web.csproj", "{05BCD758-1459-461E-8685-00948160F03D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineBank.Web", "OnlineBank.Web\OnlineBank.Web.csproj", "{05BCD758-1459-461E-8685-00948160F03D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineBank.Core", "OnlineBank.Core\OnlineBank.Core.csproj", "{CAA2A1B0-0085-4561-91F4-8A932532007F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineBank.Application", "OnlineBank.Application\OnlineBank.Application.csproj", "{B43A3844-FE78-4516-906F-4BB2C4BE0724}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineBank.DataAccess", "OnlineBank.DataAccess\OnlineBank.DataAccess.csproj", "{829488AB-DE51-4887-BFC5-A7DCACAE57C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{05BCD758-1459-461E-8685-00948160F03D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05BCD758-1459-461E-8685-00948160F03D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05BCD758-1459-461E-8685-00948160F03D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAA2A1B0-0085-4561-91F4-8A932532007F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAA2A1B0-0085-4561-91F4-8A932532007F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAA2A1B0-0085-4561-91F4-8A932532007F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAA2A1B0-0085-4561-91F4-8A932532007F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B43A3844-FE78-4516-906F-4BB2C4BE0724}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B43A3844-FE78-4516-906F-4BB2C4BE0724}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B43A3844-FE78-4516-906F-4BB2C4BE0724}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B43A3844-FE78-4516-906F-4BB2C4BE0724}.Release|Any CPU.Build.0 = Release|Any CPU
+		{829488AB-DE51-4887-BFC5-A7DCACAE57C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{829488AB-DE51-4887-BFC5-A7DCACAE57C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{829488AB-DE51-4887-BFC5-A7DCACAE57C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{829488AB-DE51-4887-BFC5-A7DCACAE57C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
