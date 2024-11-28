@@ -84,6 +84,19 @@
   display: flex;
 }
 
+.dopPanelInsurance {
+  width: 95%;
+  height: 100px; 
+  overflow: hidden; 
+  border: 0px solid #000; 
+  transition: height 0.3s ease; 
+  margin-bottom: 10px; 
+  background-color: #f5f5f5;
+  border-radius: 20px;
+  margin-left: 3%;
+  display: flex;
+}
+
 .dopPanelText {
   margin-left: 3%;
 }
@@ -100,3 +113,27 @@
 .goSaving {
   color: green;
 }
+
+.textPanelInsurance {
+  margin-left: 3%;
+  display: flex;
+}
+
+.textPanelInsurance > h2{
+  margin-right: 5%;
+}
+
+.dopPanelInsurance {
+  width: 90%;
+}
+
+.dopPanelTextInsurance {
+  margin-left: 3%;
+}
+
+.dopPanelImgInsurance > img {
+  width: 50px;
+  height: 50px;
+  margin: 10%;
+}
+
