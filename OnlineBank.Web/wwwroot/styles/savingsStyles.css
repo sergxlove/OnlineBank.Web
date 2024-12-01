@@ -85,6 +85,12 @@ h1 {
 
 .col1 {
     text-align: left;
+    display: flex;
+}
+
+.col1 > p {
+    margin-top: 4%;
+    margin-left: 3%;
 }
 
 .col1 {
@@ -96,4 +102,9 @@ h1 {
 
 .courseMoney>th , td >p {
     margin: 0px;
+}
+
+.courseMoney > img {
+    width: 30px;
+    height: 30px;
 }
