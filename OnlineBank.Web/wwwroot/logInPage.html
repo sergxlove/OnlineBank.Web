@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HTML Login Form</title>
+    <link rel="stylesheet" href="styles/regStylePage.css">
+</head>
+
+<body>
+    <div class="main">
+        <h1>Сбербанк онлайн</h1>
+        <h3>Введите ваш логин и пароль:</h3>
+
+        <form action="">
+            <label for="first">
+                Логин:
+            </label>
+            <input type="text" id="first" name="first" 
+                placeholder="Введите логин" required>
+
+            <label for="password">
+                Пароль:
+            </label>
+            <input type="password" id="password" name="password" 
+                placeholder="Введите пароль" required>
+
+            <div class="wrap">
+                <button type="submit">
+                    Войти
+                </button>
+            </div>
+        </form>
+        
+        <p>Нет личного кабинета?
+            <a src="regPage.html" style="text-decoration: none;">
+                Зарегестрироваться
+            </a>
+        </p>
+    </div>
+</body>
+
+</html>
