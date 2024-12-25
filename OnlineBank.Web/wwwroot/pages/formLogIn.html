@@ -3,15 +3,16 @@
 
 <head>
     <title>HTML Login Form</title>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="../styles/formLogIn.css">
 </head>
 
 <body>
     <div class="main">
         <h1>sergxlove.bank</h1>
-        <h3>Введите ваш логин и пароль:</h3>
+        <h3 id="hinfo">Введите ваш логин и пароль:</h3>
 
-        <form action="">
+        <form action="" id="formLogin">
             <label for="first">
                 Логин:
             </label>
@@ -25,7 +26,7 @@
                 placeholder="Введите ваш пароль" required>
 
             <div class="wrap">
-                <button type="submit">
+                <button id="logInBtn">
                     Войти
                 </button>
             </div>
@@ -37,6 +38,7 @@
             </a>
         </p>
     </div>
+    <script src="../scripts/formLogIn.js"></script>
 </body>
 
 </html>

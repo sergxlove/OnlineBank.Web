@@ -8,8 +8,11 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\styles\" />
-    <Folder Include="wwwroot\scripts\" />
     <Folder Include="wwwroot\pages\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 </Project>
