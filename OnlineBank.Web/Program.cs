@@ -9,6 +9,8 @@ namespace OnlineBank.Web
 
             app.UseStaticFiles();
 
+
+
             app.Run();
         }
     }
