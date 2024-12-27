@@ -16,6 +16,10 @@ namespace OnlineBank.Web
             {
                 return Results.File("pages/formLogIn.html", "text/html;");
             });
+            app.Map("/formRegistration.html", () =>
+            {
+                return Results.File("pages/formRegistration.html", "text/html");
+            });
             app.MapPost("/api/users", async (HttpContext context) =>
             {
                 app.Logger.LogInformation("done");
