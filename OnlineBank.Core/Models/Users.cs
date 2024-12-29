@@ -30,7 +30,7 @@
 
         public string Cvv { get; } = string.Empty;
 
-        public static (Users? user, string error) Create(Guid id, string login, string password, string numberCard, string dateEnd, string cvv)
+        public static (Users? user, string error) Create(string login, string password, string numberCard, string dateEnd, string cvv)
         {
             Users? newUser = null;
             string error = string.Empty;
