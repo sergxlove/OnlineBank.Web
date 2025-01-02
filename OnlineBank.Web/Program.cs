@@ -15,7 +15,7 @@ namespace OnlineBank.Web
             {
                 return Results.File("pages/formLogIn.html", "text/html;");
             });
-            app.Map("/formRegistration.html", () =>
+            app.Map("/registr", () =>
             {
                 return Results.File("pages/formRegistration.html", "text/html");
             });

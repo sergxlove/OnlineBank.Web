@@ -11,7 +11,24 @@
             cvv: cvv,
             login: login,
             password: password
-            })
+        })
     });
-
+    if (response.ok == true) {
+        window.location.href = "/index.html"
+    }
 }
+
+document.getElementById("formReg").addEventListener("submit", function (event) {
+    event.preventDefault();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("regBtn").addEventListener("click", async () => {
+        const numberCard = document.getElementById("numberCard").value;
+        const dateEnd = document.getElementById("dateEnd").value;
+        const cvv = document.getElementById("cvv").value;
+        const login = document.getElementById("first").value;
+        const password = document.getElementById("password").value;
+        await CreateUser(numberCard, dateEnd, cvv, login, password);
+    });
+});
