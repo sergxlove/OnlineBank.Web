@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\OnlineBank.Core\OnlineBank.Core.csproj" />
     <ProjectReference Include="..\OnlineBank.DataAccess\OnlineBank.DataAccess.csproj" />
     <ProjectReference Include="..\OnlineBank.Infrastructure\OnlineBank.Infrastructure.csproj" />
