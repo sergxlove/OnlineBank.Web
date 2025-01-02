@@ -20,6 +20,26 @@ namespace OnlineBank.Infrastructure
             }
         }
 
+        public bool Validate(string solve)
+        {
+            List<string> badSolve = new List<string>()
+            {
+                "select", "union", "insert", "update", "delete",
+                "where", "or", "and", "drop", "exec", "execute",
+                "--", ";", "#", "cast", "convert", "char", "varchar",
+                "int", "having", "group by", "order by"
+            };
+
+            foreach (string bad in badSolve)
+            {
+                if(solve.Contains(bad))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public bool Verify(string password, string passwordHash)
         {
             if (Generate(password) == passwordHash)
