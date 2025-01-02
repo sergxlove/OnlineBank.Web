@@ -15,7 +15,7 @@ namespace OnlineBank.DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseSqlite(@"Data Source=D:\projects\OnlineBank.Web\Data\data.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
