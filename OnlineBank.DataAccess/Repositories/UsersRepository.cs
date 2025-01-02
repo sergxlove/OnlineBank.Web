@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineBank.Core.Models;
+using OnlineBank.DataAccess.Abstractions;
 using OnlineBank.DataAccess.Models;
 
 namespace OnlineBank.DataAccess.Repositories
 {
-    public class UsersRepository
+    public class UsersRepository : IUsersRepository
     {
         private readonly DbContextSqlite _context;
 
@@ -46,7 +47,7 @@ namespace OnlineBank.DataAccess.Repositories
             var userEntity = await _context.Users.
                 AsNoTracking()
                 .FirstOrDefaultAsync(a => a.Login == login);
-            if(userEntity is null)
+            if (userEntity is null)
             {
                 return null;
             }
@@ -58,7 +59,7 @@ namespace OnlineBank.DataAccess.Repositories
             var userEntity = await _context.Users
                 .AsNoTracking()
                 .FirstOrDefaultAsync(a => a.Login == login);
-            if(userEntity is null)
+            if (userEntity is null)
             {
                 return null;
             }
@@ -70,7 +71,7 @@ namespace OnlineBank.DataAccess.Repositories
             return await _context.Users
                 .AsNoTracking()
                 .Where(a => a.Login == login)
-                .ExecuteUpdateAsync(s => 
+                .ExecuteUpdateAsync(s =>
                 s.SetProperty(a => a.Password, password));
         }
 
@@ -79,7 +80,7 @@ namespace OnlineBank.DataAccess.Repositories
             return await _context.Users
                 .AsNoTracking()
                 .Where(a => a.Login == user.Login)
-                .ExecuteUpdateAsync(s => s.SetProperty(a => 
+                .ExecuteUpdateAsync(s => s.SetProperty(a =>
                 a.NumberCard, user.NumberCard)
                 .SetProperty(a => a.DateEnd, user.DateEnd)
                 .SetProperty(a => a.Cvv, user.Cvv));

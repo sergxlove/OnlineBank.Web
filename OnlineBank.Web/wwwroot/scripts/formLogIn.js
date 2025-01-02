@@ -15,6 +15,7 @@
         const header = document.querySelector("h3");
         console.log("Данные успешно введены");
         header.textContent = "Данные успешно введены";
+        window.location.href = "/index.html";
     }
     else {
         const header = document.querySelector("h3");

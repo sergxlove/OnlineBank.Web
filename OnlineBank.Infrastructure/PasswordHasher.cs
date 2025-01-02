@@ -32,7 +32,7 @@ namespace OnlineBank.Infrastructure
 
             foreach (string bad in badSolve)
             {
-                if(solve.Contains(bad))
+                if (solve.Contains(bad))
                 {
                     return false;
                 }

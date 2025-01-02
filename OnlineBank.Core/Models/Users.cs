@@ -17,6 +17,7 @@
             NumberCard = numberCard;
             DateEnd = dateEnd;
             Cvv = cvv;
+            Role = "user";
         }
         public Guid Id { get; }
 
@@ -29,6 +30,8 @@
         public string DateEnd { get; } = string.Empty;
 
         public string Cvv { get; } = string.Empty;
+
+        public string Role { get; } = string.Empty;
 
         public static (Users? user, string error) Create(string login, string password, string numberCard, string dateEnd, string cvv)
         {
