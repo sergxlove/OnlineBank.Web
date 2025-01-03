@@ -15,4 +15,10 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineBank.Application\OnlineBank.Application.csproj" />
+    <ProjectReference Include="..\OnlineBank.Core\OnlineBank.Core.csproj" />
+    <ProjectReference Include="..\OnlineBank.DataAccess\OnlineBank.DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>

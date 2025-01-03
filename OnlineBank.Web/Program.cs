@@ -1,4 +1,11 @@
 using Newtonsoft.Json.Linq;
+using OnlineBank.Application.Abstractions;
+using OnlineBank.Application.Services;
+using OnlineBank.DataAccess;
+using OnlineBank.DataAccess.Abstractions;
+using OnlineBank.DataAccess.Repositories;
+using OnlineBank.Infrastructure;
+using OnlineBank.Infrastructure.Abstractions;
 
 namespace OnlineBank.Web
 {
@@ -7,6 +14,10 @@ namespace OnlineBank.Web
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<DbContextSqlite>();
+            builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+            builder.Services.AddScoped<IUsersService, UsersService>();
+            builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
             var app = builder.Build();
 
             app.UseStaticFiles();
