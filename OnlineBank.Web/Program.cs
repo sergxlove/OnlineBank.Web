@@ -8,6 +8,7 @@ using OnlineBank.DataAccess.Abstractions;
 using OnlineBank.DataAccess.Repositories;
 using OnlineBank.Infrastructure;
 using OnlineBank.Infrastructure.Abstractions;
+using OnlineBank.Infrastructure.Contracts;
 using System.Security.Claims;
 using System.Text;
 
@@ -83,6 +84,10 @@ namespace OnlineBank.Web
             {
                 return Results.File("pages/formRegistration.html", "text/html");
             });
+            app.MapGet("/index.html", () =>
+            {
+                return Results.File("index.html", "text/html");
+            }).RequireAuthorization("OnlyForAdmin");
             app.MapPost("/api/users", async (HttpContext context) =>
             {
                 app.Logger.LogInformation("done");
@@ -93,12 +98,35 @@ namespace OnlineBank.Web
                 {
                     string login = dataContext["login"]!.ToString();
                     string password = dataContext["password"]!.ToString();
-                    if(login is not null &&  password is not null)
+                    if(login is null || password is null)
                     {
-                        return Results.Ok();
+                        return Results.BadRequest();
                     }
+                    var userServise = app.Services.GetService<IUsersService>();
+                    var userPassword = await userServise!.GetPasswordUserAsync(login);
+                    if(userPassword is null)
+                    {
+                        return Results.BadRequest("Пользователь не найден");
+                    }
+                    var passwordHasher = app.Services.GetService<IPasswordHasher>();
+                    if (passwordHasher!.Verify(password, userPassword))
+                    {
+                        var jwtGenerate = app.Services.GetService<IJwtProvider>();
+                        var user = await userServise.GetUserAsync(login);
+                        var claims = new List<Claim>()
+                        {
+                            new Claim(ClaimTypes.Role, user!.Role)
+                        };
+                        var token = jwtGenerate!.GenerateToken(new JwtRequest()
+                        {
+                            Claims = claims
+                        });
+                        
+                    }
+                    return Results.BadRequest();
                 }
-                return Results.BadRequest(); 
+                return Results.BadRequest();
+                
             });
             app.MapPost("/api/createUser", async (HttpContext context) =>
             {
