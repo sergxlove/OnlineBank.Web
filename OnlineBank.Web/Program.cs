@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Linq;
 using OnlineBank.Application.Abstractions;
 using OnlineBank.Application.Services;
+using OnlineBank.Core.Models;
 using OnlineBank.DataAccess;
 using OnlineBank.DataAccess.Abstractions;
 using OnlineBank.DataAccess.Repositories;
@@ -121,6 +122,8 @@ namespace OnlineBank.Web
                         {
                             Claims = claims
                         });
+                        context.Response.Cookies.Append("jwt", token!);
+                        return Results.Ok();
                         
                     }
                     return Results.BadRequest();
@@ -141,8 +144,16 @@ namespace OnlineBank.Web
                     string login = dataContext["login"]!.ToString();
                     string password = dataContext["password"]!.ToString();
                     app.Logger.LogInformation($"{numberCard} - {dateEnd} - {cvv} - {login} - {password}");
+                    var user = Users.Create(login, password, numberCard, dateEnd, cvv);
+                    if(!string.IsNullOrEmpty(user.error))
+                    {
+                        return Results.BadRequest(user.error);
+                    }
+                    var userService = app.Services.GetService<IUsersService>();
+                    await userService!.CreateNewUserAsync(user.user!);
+                    return Results.Ok();
                 }
-                return Results.Ok();
+                return Results.BadRequest();
             });
           
             app.Run();
