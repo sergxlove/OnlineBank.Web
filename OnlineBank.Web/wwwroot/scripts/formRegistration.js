@@ -16,6 +16,12 @@
     if (response.ok == true) {
         window.location.href = "/index.html";
     }
+    else {
+        if (response.text() != "") {
+            const header = document.querySelector("h3");
+            header.textContent = response.text();
+        }
+    }
 }
 
 document.getElementById("formReg").addEventListener("submit", function (event) {

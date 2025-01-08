@@ -11,7 +11,7 @@ using OnlineBank.Infrastructure;
 using OnlineBank.Infrastructure.Abstractions;
 using OnlineBank.Infrastructure.Contracts;
 using System.Security.Claims;
-using System.Text;
+using System.Text; 
 
 namespace OnlineBank.Web
 {
@@ -149,7 +149,7 @@ namespace OnlineBank.Web
                     {
                         return Results.BadRequest(user.error);
                     }
-                    var userService = app.Services.GetService<IUsersService>();
+                    var userService = context.RequestServices.GetService<IUsersService>();
                     await userService!.CreateNewUserAsync(user.user!);
                     return Results.Ok();
                 }
