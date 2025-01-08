@@ -149,7 +149,7 @@ namespace OnlineBank.Web
                     {
                         return Results.BadRequest(user.error);
                     }
-                    var userService = app.Services.GetService<IUsersService>();
+                    var userService = context.RequestServices.GetService<IUsersService>();
                     await userService!.CreateNewUserAsync(user.user!);
                     return Results.Ok();
                 }
