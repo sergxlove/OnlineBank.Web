@@ -124,7 +124,6 @@ namespace OnlineBank.Web
                         });
                         context.Response.Cookies.Append("jwt", token!);
                         return Results.Ok();
-                        
                     }
                     return Results.BadRequest();
                 }
