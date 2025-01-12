@@ -13,7 +13,7 @@ namespace OnlineBank.Infrastructure.Contracts
 
         public DateTime Expires { get; set; } = DateTime.UtcNow.AddHours(1);
 
-        public string SecretKey { get; set; } = "mysecretkey";
+        public string SecretKey { get; set; } = "mysecretkeymysecretkeymysecretkey";
 
     }
 }
