@@ -24,7 +24,7 @@ namespace OnlineBank.Web
             builder.Services.AddScoped<IUsersRepository, UsersRepository>();
             builder.Services.AddScoped<IUsersService, UsersService>();
             builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
-            builder.Services.AddScoped<IJwtProvider, JwtProvider>();
+            builder.Services.AddSingleton<IJwtProvider, JwtProvider>();
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -32,11 +32,11 @@ namespace OnlineBank.Web
                     IConfigurationSection? jwtSettings = builder.Configuration.GetSection("JwtSettings");
                     options.TokenValidationParameters = new()
                     {
-                        ValidateIssuer = true,
+                        ValidateIssuer = false,
                         ValidIssuer = jwtSettings["Issuer"],
-                        ValidateAudience = true,
+                        ValidateAudience = false,
                         ValidAudience = jwtSettings["Audience"],
-                        ValidateLifetime = true,
+                        ValidateLifetime = false,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["SecretKey"]!)),
                         ValidateIssuerSigningKey = true
                     };
@@ -88,7 +88,7 @@ namespace OnlineBank.Web
             app.MapGet("/index.html", () =>
             {
                 return Results.File("index.html", "text/html");
-            }).RequireAuthorization("OnlyForAdmin");
+            }).RequireAuthorization("OnlyForAuthUser");
             app.MapPost("/api/users", async (HttpContext context) =>
             {
                 app.Logger.LogInformation("done");
@@ -150,7 +150,17 @@ namespace OnlineBank.Web
                     }
                     var userService = context.RequestServices.GetService<IUsersService>();
                     await userService!.CreateNewUserAsync(user.user!);
-                    return Results.Ok();
+                    var jwtGenerate = app.Services.GetService<IJwtProvider>();
+                    var claims = new List<Claim>()
+                    {
+                        new Claim(ClaimTypes.Role, user.user!.Role)
+                    };
+                    var token = jwtGenerate!.GenerateToken(new JwtRequest()
+                    {
+                        Claims = claims
+                    });
+                    context.Response.Cookies.Append("jwt", token!);
+                    return Results.Redirect("/index.html");
                 }
                 return Results.BadRequest();
             });
