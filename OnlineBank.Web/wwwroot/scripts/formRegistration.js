@@ -17,10 +17,15 @@
         window.location.href = "/index.html";
     }
     else {
-        if (response.text() != "") {
-            const header = document.querySelector("h3");
-            header.textContent = response.text();
-        }
+        response.text().then(text => {
+            if (text != "") {
+                const toastLiveExample = document.getElementById('liveToast')
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+                const textBody = document.getElementById('toastBody');
+                textBody.textContent = text;
+                toastBootstrap.show();
+            }
+        })
     }
 }
 

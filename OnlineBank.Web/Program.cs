@@ -24,7 +24,7 @@ namespace OnlineBank.Web
             builder.Services.AddScoped<IUsersRepository, UsersRepository>();
             builder.Services.AddScoped<IUsersService, UsersService>();
             builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
-            builder.Services.AddSingleton<IJwtProvider, JwtProvider>();
+            builder.Services.AddScoped<IJwtProvider, JwtProvider>();
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -76,7 +76,7 @@ namespace OnlineBank.Web
             {
                 context.Response.Cookies.Delete("jwt");
                 return Results.Ok();
-            });
+            }).RequireAuthorization("OnlyForAuthUser");
             app.Map("/registr", () =>
             {
                 return Results.File("pages/formRegistration.html", "text/html");
@@ -150,7 +150,7 @@ namespace OnlineBank.Web
                     }
                     var userService = context.RequestServices.GetService<IUsersService>();
                     await userService!.CreateNewUserAsync(user.user!);
-                    var jwtGenerate = app.Services.GetService<IJwtProvider>();
+                    var jwtGenerate = context.RequestServices.GetService<IJwtProvider>();
                     var claims = new List<Claim>()
                     {
                         new Claim(ClaimTypes.Role, user.user!.Role)
