@@ -101,7 +101,7 @@ namespace OnlineBank.Web
                     string password = dataContext["password"]!.ToString();
                     if(login is null || password is null)
                     {
-                        return Results.BadRequest();
+                        return Results.BadRequest("Необходимо ввести данные");
                     }
                     var userServise = app.Services.GetService<IUsersService>();
                     var userPassword = await userServise!.GetPasswordUserAsync(login);
@@ -125,7 +125,7 @@ namespace OnlineBank.Web
                         context.Response.Cookies.Append("jwt", token!);
                         return Results.Ok();
                     }
-                    return Results.BadRequest();
+                    return Results.BadRequest("Ошибка передачи данных. Попробуйте еще раз");
                 }
                 return Results.BadRequest();
                 
@@ -162,7 +162,7 @@ namespace OnlineBank.Web
                     context.Response.Cookies.Append("jwt", token!);
                     return Results.Redirect("/index.html");
                 }
-                return Results.BadRequest();
+                return Results.BadRequest("Ошибка передачи данных. Попробуйте еще раз");
             });
           
             app.Run();
