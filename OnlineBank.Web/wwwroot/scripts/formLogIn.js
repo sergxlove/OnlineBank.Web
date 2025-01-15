@@ -11,16 +11,23 @@
         })
     });
     console.log("запрос отправлен");
-    if (response.ok == true) {
-        const header = document.querySelector("h3");
-        console.log("Данные успешно введены");
-        header.textContent = "Данные успешно введены";
-        window.location.href = "/index.html";
-    }
-    else {
-        const header = document.querySelector("h3");
-        console.log("Произошла ошибка");
-        header.textContent = "Произошла ошибка";
+    switch (response.status) {
+        case 200:
+            window.location.href = "/index.html";
+            break;
+        case 400:
+            response.text().then(text => {
+                if (text != "") {
+                    const toastLiveExample = document.getElementById('liveToast')
+                    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+                    const textBody = document.getElementById('toastBody');
+                    textBody.textContent = text;
+                    toastBootstrap.show();
+                }
+            });
+            break;
+        case 401:
+            break;
     }
 }
 document.getElementById("formLogin").addEventListener("submit", function (event) {

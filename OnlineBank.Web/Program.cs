@@ -23,7 +23,7 @@ namespace OnlineBank.Web
             builder.Services.AddDbContext<DbContextSqlite>();
             builder.Services.AddScoped<IUsersRepository, UsersRepository>();
             builder.Services.AddScoped<IUsersService, UsersService>();
-            builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+            builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
             builder.Services.AddScoped<IJwtProvider, JwtProvider>();
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -67,21 +67,24 @@ namespace OnlineBank.Web
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseStaticFiles();
-
-            app.Map("/login", () =>
+            app.MapGet("/", () =>
             {
                 return Results.File("pages/formLogIn.html", "text/html;");
             });
-            app.Map("/logout", (HttpContext context) =>
+            app.MapGet("/login", () =>
+            {
+                return Results.File("pages/formLogIn.html", "text/html;");
+            });
+            app.MapGet("/logout", (HttpContext context) =>
             {
                 context.Response.Cookies.Delete("jwt");
                 return Results.Ok();
             }).RequireAuthorization("OnlyForAuthUser");
-            app.Map("/registr", () =>
+            app.MapGet("/registr", () =>
             {
                 return Results.File("pages/formRegistration.html", "text/html");
             });
-            app.Map("/formRegistration.html", () =>
+            app.MapGet("/formRegistration.html", () =>
             {
                 return Results.File("pages/formRegistration.html", "text/html");
             });
@@ -103,7 +106,7 @@ namespace OnlineBank.Web
                     {
                         return Results.BadRequest("Необходимо ввести данные");
                     }
-                    var userServise = app.Services.GetService<IUsersService>();
+                    var userServise = context.RequestServices.GetService<IUsersService>();
                     var userPassword = await userServise!.GetPasswordUserAsync(login);
                     if(userPassword is null)
                     {
@@ -112,7 +115,7 @@ namespace OnlineBank.Web
                     var passwordHasher = app.Services.GetService<IPasswordHasher>();
                     if (passwordHasher!.Verify(password, userPassword))
                     {
-                        var jwtGenerate = app.Services.GetService<IJwtProvider>();
+                        var jwtGenerate = context.RequestServices.GetService<IJwtProvider>();
                         var user = await userServise.GetUserAsync(login);
                         var claims = new List<Claim>()
                         {
@@ -123,11 +126,14 @@ namespace OnlineBank.Web
                             Claims = claims
                         });
                         context.Response.Cookies.Append("jwt", token!);
-                        return Results.Ok();
+                        return Results.Redirect("/index.html");
                     }
-                    return Results.BadRequest("Ошибка передачи данных. Попробуйте еще раз");
+                    else
+                    {
+                        return Results.BadRequest("Неверный пароль");
+                    }
                 }
-                return Results.BadRequest();
+                return Results.BadRequest("Ошибка передачи данных. Попробуйте еще раз");
                 
             });
             app.MapPost("/api/createUser", async (HttpContext context) =>

@@ -25,7 +25,7 @@
                 textBody.textContent = text;
                 toastBootstrap.show();
             }
-        })
+        });
     }
 }
 
