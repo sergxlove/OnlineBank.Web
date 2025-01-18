@@ -1,4 +1,5 @@
 ﻿async function CheckUser(login, password) {
+    DisabledButton("logInBtn");
     const response = await fetch("/api/users", {
         method: "POST",
         headers: {
@@ -29,13 +30,28 @@
         case 401:
             break;
     }
+    UndisabledButton("logInBtn")
 }
+
+async function DisabledButton(nameBtn) {
+    var button = document.getElementById(nameBtn);
+    button.innerHTML = "Загрузка";
+    button.style.backgroundColor = "black";
+    button.disabled = true;
+}
+
+async function UndisabledButton(nameBtn) {
+    var button = document.getElementById(nameBtn);
+    button.disabled = false;
+    button.innerHTML = "Загрузка";
+}
+
 document.getElementById("formLogin").addEventListener("submit", function (event) {
     event.preventDefault();
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("logInBtn").addEventListener("click", async () => {
+    document.addEventListener("click", async () => {
         const login = document.getElementById("first").value;
         const password = document.getElementById("password").value;
         await CheckUser(login, password);
