@@ -36,7 +36,7 @@
 async function DisabledButton(nameBtn) {
     var button = document.getElementById(nameBtn);
     button.innerHTML = "Загрузка";
-    button.style.backgroundColor = "black";
+    //button.style.backgroundColor = "rgb(164, 255, 150)";
     button.disabled = true;
 }
 
