@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineBank.DataAccess", "On
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineBank.Infrastructure", "OnlineBank.Infrastructure\OnlineBank.Infrastructure.csproj", "{C77C3826-FD67-4D5A-80A8-0016A6C38E87}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineBank.Tests", "OnlineBank.Tests\OnlineBank.Tests.csproj", "{574E624F-8518-4A0F-873B-8C892306F4C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{C77C3826-FD67-4D5A-80A8-0016A6C38E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C77C3826-FD67-4D5A-80A8-0016A6C38E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C77C3826-FD67-4D5A-80A8-0016A6C38E87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{574E624F-8518-4A0F-873B-8C892306F4C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{574E624F-8518-4A0F-873B-8C892306F4C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{574E624F-8518-4A0F-873B-8C892306F4C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{574E624F-8518-4A0F-873B-8C892306F4C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

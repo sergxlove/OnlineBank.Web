@@ -59,7 +59,7 @@
             }
             if (string.IsNullOrEmpty(numberCard))
             {
-                error = $"Отстутствует значение number card";
+                error = $"Отсутствует значение number card";
                 return (newUser, error);
             }
             if(numberCard.Length != SIZE_NUMBERCARD)
