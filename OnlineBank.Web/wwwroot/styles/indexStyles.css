@@ -1,6 +1,6 @@
 body {
     background-color: #f1f1f1;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Roboto", serif;
 }
 
 .container {
@@ -59,8 +59,8 @@ body {
     padding: 10px;
     margin: 10px;
     width: 95%;
-    font-family: Arial;
     cursor: pointer;
+    font-size: 24px;
 }
 
 .buttonLeftPanel:hover {
@@ -97,15 +97,12 @@ body {
 }
 
 .textButton {
-    font-size: 18px; 
     color: #000000; 
-    font-family: Arial;
 }
 
 .textSearchButton {
     font-size: 22px;
     color: #333;
-    font-family: Arial;
 }
 
 .iconSber {
