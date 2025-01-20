@@ -35,15 +35,16 @@
 
 async function DisabledButton(nameBtn) {
     var button = document.getElementById(nameBtn);
-    button.innerHTML = "Загрузка";
-    //button.style.backgroundColor = "rgb(164, 255, 150)";
+    button.innerHTML = '<span class="spinner - border spinner - border - sm" role="status" aria-hidden="true"></span> Загрузка...';
+    button.style.backgroundColor = "rgb(164, 255, 150)";
     button.disabled = true;
 }
 
 async function UndisabledButton(nameBtn) {
     var button = document.getElementById(nameBtn);
     button.disabled = false;
-    button.innerHTML = "Загрузка";
+    button.innerHTML = "Войти";
+    button.style.backgroundColor = "rgb(76, 175, 80)";
 }
 
 document.getElementById("formLogin").addEventListener("submit", function (event) {
