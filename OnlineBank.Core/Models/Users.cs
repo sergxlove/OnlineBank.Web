@@ -33,6 +33,10 @@
 
         public string Role { get; } = string.Empty;
 
+        public DataUsers? DataUsers { get; }
+
+        public List<Cards> Cards { get; } = [];
+
         public static (Users? user, string error) Create(string login, string password, string numberCard, string dateEnd, string cvv)
         {
             Users? newUser = null;
