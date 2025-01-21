@@ -1,5 +1,4 @@
 ﻿using OnlineBank.Core.Models;
-using System.Text;
 
 namespace OnlineBank.Tests.UnitTests.Core
 {
@@ -16,11 +15,19 @@ namespace OnlineBank.Tests.UnitTests.Core
         private string _cvv = "123";
 
         [Fact]
-        public void CreateUser()
+        public void CheckErrorCreateUser()
         {
             var result = Users.Create(_login, _password, _numberCard, _dateEnd, _cvv);
 
             Assert.Empty(result.error);
+        }
+
+        [Fact]
+        public void CheckObjectCreateUser()
+        {
+            var result = Users.Create(_login, _password, _numberCard, _dateEnd, _cvv);
+
+            Assert.True(result.user is not null);
         }
 
         [Fact]
