@@ -1,4 +1,4 @@
-п»їasync function CheckUser(login, password) {
+async function CheckUser(login, password) {
     DisabledButton("logInBtn");
     try {
         const response = await fetch("/api/users", {
@@ -12,7 +12,7 @@
                 password: password
             })
         });
-        console.log("Р·Р°РїСЂРѕСЃ РѕС‚РїСЂР°РІР»РµРЅ");
+        console.log("запрос отправлен");
         switch (response.status) {
             case 200:
                 window.location.href = "/index.html";
@@ -33,15 +33,14 @@
         }
         UndisabledButton("logInBtn")
     }
-    catch(error)
-    {
+    catch (error) {
         UndisabledButton("logInBtn")
     }
 }
 
 async function DisabledButton(nameBtn) {
     var button = document.getElementById(nameBtn);
-    button.innerHTML = '<span class="spinner - border spinner - border - sm" role="status" aria-hidden="true"></span> Р—Р°РіСЂСѓР·РєР°...';
+    button.innerHTML = '<span class="spinner - border spinner - border - sm" role="status" aria-hidden="true"></span> Загрузка...';
     button.style.backgroundColor = "rgb(164, 255, 150)";
     button.disabled = true;
 }
@@ -49,18 +48,15 @@ async function DisabledButton(nameBtn) {
 async function UndisabledButton(nameBtn) {
     var button = document.getElementById(nameBtn);
     button.disabled = false;
-    button.innerHTML = "Р’РѕР№С‚Рё";
+    button.innerHTML = "Войти";
     button.style.backgroundColor = "rgb(76, 175, 80)";
 }
 
-document.getElementById("formLogin").addEventListener("submit", function (event) {
+document.getElementById("logInBtn").addEventListener("click", async (event) => {
     event.preventDefault();
+    const login = document.getElementById("loginUser").value;
+    const password = document.getElementById("passwordUser").value;
+    await CheckUser(login, password);
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    document.addEventListener("click", async () => {
-        const login = document.getElementById("first").value;
-        const password = document.getElementById("password").value;
-        await CheckUser(login, password);
-    });
-});
+

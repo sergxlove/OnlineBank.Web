@@ -38,8 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const numberCard = document.getElementById("numberCard").value;
         const dateEnd = document.getElementById("dateEnd").value;
         const cvv = document.getElementById("cvv").value;
-        const login = document.getElementById("first").value;
-        const password = document.getElementById("password").value;
+        const login = document.getElementById("loginUser").value;
+        const password = document.getElementById("passwordUser").value;
         await CreateUser(numberCard, dateEnd, cvv, login, password);
     });
 });
