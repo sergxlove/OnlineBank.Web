@@ -12,7 +12,6 @@ async function CheckUser(login, password) {
                 password: password
             })
         });
-        console.log("запрос отправлен");
         switch (response.status) {
             case 200:
                 window.location.href = "/index.html";
@@ -29,6 +28,8 @@ async function CheckUser(login, password) {
                 });
                 break;
             case 401:
+                break;
+            default:
                 break;
         }
         UndisabledButton("logInBtn")
