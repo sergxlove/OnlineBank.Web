@@ -28,6 +28,10 @@ namespace OnlineBank.Web.Endpoints
             {
                 return Results.File("pages/formRegistration.html", "text/html");
             });
+            app.MapGet("newCards.html", () =>
+            {
+                return Results.File("pages/newCards.html", "text/html");
+            });
             app.MapGet("/index.html", () =>
             {
                 return Results.File("index.html", "text/html");
@@ -107,6 +111,10 @@ namespace OnlineBank.Web.Endpoints
                     return Results.Redirect("/index.html");
                 }
                 return Results.BadRequest("Ошибка передачи данных. Попробуйте еще раз");
+            });
+            app.MapPost("/api/createCard", async () =>
+            {
+                await Task.CompletedTask;
             });
             return app;
         }
