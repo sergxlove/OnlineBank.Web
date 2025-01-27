@@ -10,6 +10,14 @@ namespace OnlineBank.DataAccess.Configurations
         {
             builder.ToTable("users");
             builder.HasKey(a => a.Id);
+
+            builder.HasOne(a => a.DataUsers)
+                .WithOne(a => a.Users)
+                .HasForeignKey<DataUsersEntity>(a => a.Id);
+
+            builder.HasMany(a => a.Cards)
+                .WithOne(a => a.User)
+                .HasForeignKey(a => a.UserId);
         }
     }
 }

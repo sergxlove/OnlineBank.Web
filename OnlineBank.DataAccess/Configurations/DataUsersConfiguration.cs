@@ -10,6 +10,9 @@ namespace OnlineBank.DataAccess.Configurations
         {
             builder.ToTable("datausers");
             builder.HasKey(a => a.Id);
+
+            builder.HasOne(a => a.Users)
+                .WithOne(a => a.DataUsers);
         }
     }
 }

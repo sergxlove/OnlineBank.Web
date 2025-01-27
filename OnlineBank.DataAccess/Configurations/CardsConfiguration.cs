@@ -10,6 +10,10 @@ namespace OnlineBank.DataAccess.Configurations
         {
             builder.ToTable("cards");
             builder.HasKey(a => a.Id);
+
+            builder.HasOne(a => a.User)
+                .WithMany(a => a.Cards)
+                .HasForeignKey(a => a.UserId);
         }
     }
 }
