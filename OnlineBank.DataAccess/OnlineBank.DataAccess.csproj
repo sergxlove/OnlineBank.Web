@@ -22,8 +22,4 @@
     <ProjectReference Include="..\OnlineBank.Core\OnlineBank.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Contracts\" />
-  </ItemGroup>
-
 </Project>

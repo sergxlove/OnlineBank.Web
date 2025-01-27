@@ -112,9 +112,32 @@ namespace OnlineBank.Web.Endpoints
                 }
                 return Results.BadRequest("Ошибка передачи данных. Попробуйте еще раз");
             });
-            app.MapPost("/api/createCard", async () =>
+            app.MapPost("/api/createCard", async (HttpContext context) =>
             {
-                await Task.CompletedTask;
+                var logger = context.RequestServices.GetService<ILogger>();
+                var reader = new StreamReader(context.Request.Body);
+                var bodyString = await reader.ReadToEndAsync();
+                var json = JObject.Parse(bodyString);
+                if(json is not null)
+                {
+                    string firstName = json["firstName"]!.ToString();
+                    string secondName = json["secondName"]!.ToString();
+                    string lastName = json["lastName"]!.ToString();
+                    string dateBirth = json["dateBirth"]!.ToString();
+                    string passportData = json["passportData"]!.ToString();
+                    string numberPhone = json["numberPhone"]!.ToString();
+                    string email = json["email"]!.ToString();
+                    string login = json["loginUser"]!.ToString();
+                    string password = json["loginPassword"]!.ToString();
+                    var userData = DataUsers.Create(firstName, secondName, lastName, dateBirth, passportData, numberPhone, email);
+                    if(!string.IsNullOrEmpty(userData.error))
+                    {
+                        return Results.BadRequest(userData.error);
+                    }
+
+                    await Task.CompletedTask;
+                }
+                return Results.BadRequest("Ошибка передачи данных. Попробуйте еще раз");
             });
             return app;
         }
