@@ -24,8 +24,8 @@ namespace OnlineBank.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new UsersConfiguration());
             modelBuilder.ApplyConfiguration(new DataUsersConfiguration());
+            modelBuilder.ApplyConfiguration(new UsersConfiguration());
             modelBuilder.ApplyConfiguration(new CardsConfiguration());
             base.OnModelCreating(modelBuilder);
         }
