@@ -32,25 +32,24 @@ async function CheckUser(login, password) {
             default:
                 break;
         }
-        UndisabledButton("logInBtn")
+        UndisabledButton("logInBtn");
     }
     catch (error) {
-        UndisabledButton("logInBtn")
+        console.log(error);
+        UndisabledButton("logInBtn");
     }
 }
 
 async function DisabledButton(nameBtn) {
     var button = document.getElementById(nameBtn);
-    button.innerHTML = '<span class="spinner - border spinner - border - sm" role="status" aria-hidden="true"></span> Загрузка...';
-    button.style.backgroundColor = "rgb(164, 255, 150)";
+    button.innerHTML = '<div class="spinner-border" role="status"></div>';
     button.disabled = true;
 }
 
 async function UndisabledButton(nameBtn) {
     var button = document.getElementById(nameBtn);
     button.disabled = false;
-    button.innerHTML = "Войти";
-    button.style.backgroundColor = "rgb(76, 175, 80)";
+    button.innerHTML = "Р’РѕР№С‚Рё";
 }
 
 document.getElementById("logInBtn").addEventListener("click", async (event) => {

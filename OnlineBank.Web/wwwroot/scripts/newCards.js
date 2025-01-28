@@ -1,5 +1,6 @@
-﻿async function CreateCard(firstName, secondName, lastName, dateBirth,
+async function CreateCard(firstName, secondName, lastName, dateBirth,
     passportData, numberPhone, email, loginUser, passwordUser) {
+    DisabledButton("cardBtn");
     try {
         const response = await fetch("/api/createCard", {
             method: "POST",
@@ -37,10 +38,24 @@
             default:
                 break;
         }
+        UndisabledButton("cardBtn");
     }
     catch (error) {
         console.log(error);
+        UndisabledButton("cardBtn");
     }
+}
+
+async function DisabledButton(nameBtn) {
+    var button = document.getElementById(nameBtn);
+    button.innerHTML = '<div class="spinner-border" role="status"></div>';
+    button.disabled = true;
+}
+
+async function UndisabledButton(nameBtn) {
+    var button = document.getElementById(nameBtn);
+    button.disabled = false;
+    button.innerHTML = "Отправить данные";
 }
 
 document.getElementById("cardBtn").addEventListener("click", async (event) => {
@@ -53,5 +68,5 @@ document.getElementById("cardBtn").addEventListener("click", async (event) => {
     const login = document.getElementById("loginUser").value;
     const password = document.getElementById("passwordUser").value;
     await CreateCard(firstName, secondName, lastName, dateBirth, passportData, numberPhone, email,
-        loginUser, password);
+        login, password);
 })

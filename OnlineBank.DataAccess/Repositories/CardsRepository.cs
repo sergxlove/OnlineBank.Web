@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineBank.DataAccess.Abstractions;
+using OnlineBank.DataAccess.Contracts.Requests;
 using OnlineBank.DataAccess.Models;
 
 namespace OnlineBank.DataAccess.Repositories
@@ -27,6 +28,11 @@ namespace OnlineBank.DataAccess.Repositories
             var cards = await _context.AddAsync(newCard);
             await _context.SaveChangesAsync();
             return newCard.Id;
+        }
+
+        public async Task<Guid> Add(RequestCards r)
+        {
+            return await Add(r.NumberCard, r.DateEnd, r.Cvv, r.UserId);
         }
 
         public async Task<int> Delete(string numberCard)

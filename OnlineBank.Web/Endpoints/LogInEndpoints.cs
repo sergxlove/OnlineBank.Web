@@ -114,7 +114,6 @@ namespace OnlineBank.Web.Endpoints
             });
             app.MapPost("/api/createCard", async (HttpContext context) =>
             {
-                var logger = context.RequestServices.GetService<ILogger>();
                 var reader = new StreamReader(context.Request.Body);
                 var bodyString = await reader.ReadToEndAsync();
                 var json = JObject.Parse(bodyString);
@@ -134,8 +133,7 @@ namespace OnlineBank.Web.Endpoints
                     {
                         return Results.BadRequest(userData.error);
                     }
-
-                    await Task.CompletedTask;
+                    
                 }
                 return Results.BadRequest("Ошибка передачи данных. Попробуйте еще раз");
             });

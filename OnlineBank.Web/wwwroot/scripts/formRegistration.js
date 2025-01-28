@@ -1,4 +1,5 @@
-﻿async function CreateUser(numberCard, dateEnd, cvv, login, password) {
+async function CreateUser(numberCard, dateEnd, cvv, login, password) {
+    DisabledButton("regBtn");
     try {
         const response = await fetch("/api/createUser", {
             method: "POST",
@@ -32,10 +33,24 @@
             default:
                 break;
         }
+        UndisabledButton("regBtn");
     }
     catch (error) {
         console.log(error);
+        UndisabledButton("regBtn");
     }
+}
+
+async function DisabledButton(nameBtn) {
+    var button = document.getElementById(nameBtn);
+    button.innerHTML = '<div class="spinner-border" role="status"></div>';
+    button.disabled = true;
+}
+
+async function UndisabledButton(nameBtn) {
+    var button = document.getElementById(nameBtn);
+    button.disabled = false;
+    button.innerHTML = "Оформить";
 }
 
 document.getElementById("regBtn").addEventListener("click", async (event) => {
