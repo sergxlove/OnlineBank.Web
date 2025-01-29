@@ -6,6 +6,7 @@ namespace OnlineBank.Web.Extensions
     {
         public static IEndpointRouteBuilder MapAllEndpoints(this IEndpointRouteBuilder app)
         {
+            app.MapGettingPagesEndpoints();
             app.MapLogInEndpoints();
             return app;
         }

@@ -1,29 +1,33 @@
-﻿using OnlineBank.Core.Models;
+﻿using OnlineBank.Core.Contracts;
+using OnlineBank.Core.Models;
+using System.Security;
 
 namespace OnlineBank.Tests.UnitTests.Core
 {
     public class DataUserModelsTests
     {
-        private string _firstName = "sergxlove";
-        private string _secondName = "sergxlove";
-        private string _lastName = "sergxlove";
-        private string _dateBirth = "02.02.2022";
-        private string _passportData = "1111/111111";
-        private string _numberPhone = "+7-000-000-00-00";
-        private string _email = "exapmle@mail.com";
+        public (DataUsers? user, string error) CreateDataUserObject(string firstName = "sergxlove", 
+            string secondName = "sergxlove", string lastName = "sergxlove", string dateBirth = "02.02.2022",
+            string passportData = "1111/111111", string numberPhone = "+7-000-000-00-00", 
+            string email = "example@mail.com")
+        {
+            var result = new DataUsersRequest()
+            {
+                FirstName = firstName, 
+                SecondName = secondName, 
+                LastName = lastName,
+                DateBirth = dateBirth, 
+                PassportData = passportData,
+                NumberPhone = numberPhone,
+                Email = email
+            };
+            return DataUsers.Create(result); 
+        }
+
         [Fact]
         public void CheckErrorCreateDateUser()
         {
-            var result = DataUsers.Create(new()
-            {
-                FirstName = _firstName, 
-                SecondName = _secondName, 
-                LastName = _lastName,
-                DateBirth = _dateBirth, 
-                PassportData = _passportData,
-                NumberPhone = _numberPhone,
-                Email = _email
-            });
+            var result = CreateDataUserObject();
 
             Assert.Empty(result.error);
         }
@@ -31,20 +35,66 @@ namespace OnlineBank.Tests.UnitTests.Core
         [Fact]
         public void CheckObjectCreateDateUser()
         {
-            var result = DataUsers.Create(new()
-            {
-                FirstName = _firstName,
-                SecondName = _secondName,
-                LastName = _lastName,
-                DateBirth = _dateBirth,
-                PassportData = _passportData,
-                NumberPhone = _numberPhone,
-                Email = _email
-            });
+            var result = CreateDataUserObject();
 
-            Assert.True(result.dataUser is not null);
+            Assert.True(result.user is not null);
         }
 
+        [Fact]
+        public void CreateDataUserWhenFirstNameNull()
+        {
+            var result = CreateDataUserObject(firstName: string.Empty);
+
+            Assert.Equal("Отсутствует ФИО", result.error);
+        }
+
+        [Fact]
+        public void CreateDataUserWhenLastNameNull()
+        {
+            var result = CreateDataUserObject(lastName: string.Empty);
+
+            Assert.Equal("Отсутствует ФИО", result.error);
+        }
+
+        [Fact]
+        public void CreateDataUserWhenSecondNameNull()
+        {
+            var result = CreateDataUserObject(secondName: string.Empty);
+
+            Assert.Equal("Отсутствует ФИО", result.error);
+        }
+
+        [Fact]
+        public void CreateDataUserWhenDateBirthNull()
+        {
+            var result = CreateDataUserObject(dateBirth: string.Empty);
+
+            Assert.Equal("Отсутствует дата рождения", result.error);
+        }
+
+        [Fact]
+        public void CreateDataUserWhenPassportDataNull()
+        {
+            var result = CreateDataUserObject(passportData: string.Empty);
+
+            Assert.Equal("Отсутствуют паспортные данные", result.error);
+        }
+
+        [Fact]
+        public void CreateDataUserWhenNumberPhoneNull()
+        {
+            var result = CreateDataUserObject(numberPhone: string.Empty);
+
+            Assert.Equal("Отсутствует номер телефона", result.error);
+        }
+
+        [Fact]
+        public void CreateDataUserWhenEmailNull()
+        {
+            var result = CreateDataUserObject(email: string.Empty);
+
+            Assert.Equal("Отсутствует электронная почта", result.error);
+        }
 
     }
 }
