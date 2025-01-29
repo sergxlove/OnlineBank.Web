@@ -35,6 +35,17 @@ async function CreateCard(firstName, secondName, lastName, dateBirth,
                     }
                 });
                 break;
+            case 500:
+                response.text().then(text => {
+                    if (text != "") {
+                        const toastLiveExample = document.getElementById('liveToast')
+                        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+                        const textBody = document.getElementById('toastBody');
+                        textBody.textContent = text;
+                        toastBootstrap.show();
+                    }
+                })
+                break;
             default:
                 break;
         }
