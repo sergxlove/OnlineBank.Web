@@ -96,5 +96,69 @@ namespace OnlineBank.Tests.UnitTests.Core
             Assert.Equal("Отсутствует электронная почта", result.error);
         }
 
+        [Fact]
+        public void CreateDataUserWhenFirstNameIncorrect()
+        {
+            var result = CreateDataUserObject(firstName: "sergxlovesergxlovesergxlovesergxlove");
+
+            Assert.Equal($"Имя дллжно иметь до {DataUsers.MAX_LENGTH_FIRSTNAME} символов", result.error);
+        }
+
+        [Fact]
+        public void CreateDataUsersWhenSecondNameIncorrect()
+        {
+            var result = CreateDataUserObject(secondName: "sergxlovesergxlovesergxlovesergxlove");
+
+            Assert.Equal($"Отчество дллжно иметь до {DataUsers.MAX_LENGTH_SECONDNAME} символов", result.error);
+        }
+
+        [Fact]
+        public void CreateDataUsersWhenLastNameIncorrect()
+        {
+            var result = CreateDataUserObject(lastName: "sergxlovesergxlovesergxlovesergxlove");
+
+            Assert.Equal($"Фамилия дллжно иметь до {DataUsers.MAX_LENGTH_LASTNAME} символов", result.error);
+        }
+
+        [Theory]
+        [InlineData("742652")]
+        [InlineData("yjklhfch")]
+        public void CreateDataUsersWhenDateBirthIncorrect(string dateBirth)
+        {
+            var result = CreateDataUserObject(dateBirth: dateBirth);
+
+            Assert.Equal($"Некорректный формат даты рождения", result.error);
+        }
+
+        [Theory]
+        [InlineData("jkhghfd")]
+        [InlineData("234675556843")]
+        public void CreateDataUserWhenPassportDataIncorrect(string passportData)
+        {
+            var result = CreateDataUserObject(passportData: passportData);
+
+            Assert.Equal($"Некорректный формат паспортных данных", result.error);
+        }
+
+        [Theory]
+        [InlineData("43335973535")]
+        [InlineData("sksfesego39")]
+        public void CreateDataUserWhenNumberPhoneIncorrect(string numberPhone)
+        {
+            var result = CreateDataUserObject(numberPhone: numberPhone);
+
+            Assert.Equal("Некорректный формат номера телефона", result.error);
+        }
+
+        [Theory]
+        [InlineData("ser")]
+        [InlineData("sergxlovesergxlovesergxlovesergxlovesergxlovesergxlove")]
+        public void CreateDataUserWhenEmailIncorrect(string email)
+        {
+            var result = CreateDataUserObject(email: email);
+
+            Assert.Equal($"Электронная почта должна иметь от {DataUsers.MIN_LENGTH_EMAIL} " +
+                    $"до {DataUsers.MAX_LENGTH_EMAIL} символов", result.error);
+        }
     }
 }

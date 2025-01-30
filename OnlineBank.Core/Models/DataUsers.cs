@@ -117,7 +117,7 @@ namespace OnlineBank.Core.Models
                 return (newDataUser, error);
             }
             
-            if(numberPhone.Length != FORMAT_NUMBERPHONE.Length)
+            if(numberPhone.Length != FORMAT_NUMBERPHONE.Length || numberPhone.Any(char.IsLetter))
             {
                 error = $"Некорректный формат номера телефона";
                 return (newDataUser, error);
