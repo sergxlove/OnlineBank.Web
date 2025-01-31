@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\styles\" />
     <Folder Include="wwwroot\pages\" />
   </ItemGroup>
 

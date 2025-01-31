@@ -24,6 +24,12 @@ namespace OnlineBank.Web
             builder.Services.AddDbContext<DbContextSqlite>();
             builder.Services.AddScoped<IUsersRepository, UsersRepository>();
             builder.Services.AddScoped<IUsersService, UsersService>();
+            builder.Services.AddScoped<ICardsRepository, CardsRepository>();
+            builder.Services.AddScoped<ICardsService, CardsService>();
+            builder.Services.AddScoped<IDataUsersRepository, DataUsersRepository>();
+            builder.Services.AddScoped<IDataUsersService, DataUsersService>();
+            builder.Services.AddSingleton<ISystemTableRepository, SystemTableRepository>();
+            builder.Services.AddSingleton<ISystemTableService, SystemTableService>();
             builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
             builder.Services.AddScoped<IJwtProvider, JwtProvider>();
 
