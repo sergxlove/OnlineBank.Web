@@ -5,6 +5,7 @@ using OnlineBank.DataAccess.Models;
 
 namespace OnlineBank.DataAccess.Repositories
 {
+   
     public class UsersRepository : IUsersRepository
     {
         private readonly DbContextSqlite _context;
@@ -33,9 +34,6 @@ namespace OnlineBank.DataAccess.Repositories
                 Id = users.Id,
                 Login = users.Login,
                 Password = users.Password,
-                NumberCard = users.NumberCard,
-                DateEnd = users.DateEnd,
-                Cvv = users.Cvv,
             };
             await _context.Users.AddAsync(usersEntity);
             await _context.SaveChangesAsync();
@@ -51,7 +49,7 @@ namespace OnlineBank.DataAccess.Repositories
             {
                 return null;
             }
-            return Users.Create(userEntity.Login, userEntity.Password, userEntity.NumberCard, userEntity.DateEnd, userEntity.Cvv).user;
+            return Users.Create(userEntity.Login, userEntity.Password).user;
         }
 
         public async Task<string?> GetPasswordAsync(string login)
@@ -73,17 +71,6 @@ namespace OnlineBank.DataAccess.Repositories
                 .Where(a => a.Login == login)
                 .ExecuteUpdateAsync(s =>
                 s.SetProperty(a => a.Password, password));
-        }
-
-        public async Task<int> Update(Users user)
-        {
-            return await _context.Users
-                .AsNoTracking()
-                .Where(a => a.Login == user.Login)
-                .ExecuteUpdateAsync(s => s.SetProperty(a =>
-                a.NumberCard, user.NumberCard)
-                .SetProperty(a => a.DateEnd, user.DateEnd)
-                .SetProperty(a => a.Cvv, user.Cvv));
         }
 
         public async Task<int> Delete(string login)
