@@ -1,6 +1,7 @@
 async function CreateUser(numberCard, dateEnd, cvv, login, password) {
     DisabledButton("regBtn");
     try {
+        const checkLogin = document.getElementById("checkLogin").checked;
         const response = await fetch("/api/createUser", {
             method: "POST",
             headers: {
@@ -12,7 +13,8 @@ async function CreateUser(numberCard, dateEnd, cvv, login, password) {
                 dateEnd: dateEnd,
                 cvv: cvv,
                 login: login,
-                password: password
+                password: password,
+                checkLogin: checkLogin
             })
         });
         switch (response.status) {

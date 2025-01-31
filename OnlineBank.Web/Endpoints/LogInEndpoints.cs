@@ -82,24 +82,34 @@ namespace OnlineBank.Web.Endpoints
                         string cvv = dataContext["cvv"]!.ToString();
                         string login = dataContext["login"]!.ToString();
                         string password = dataContext["password"]!.ToString();
-                        var user = Users.Create(login, password);
-                        if (!string.IsNullOrEmpty(user.error))
+                        bool checkLogin = (bool)dataContext["checkLogin"]!;
+                        if(checkLogin is true)
                         {
-                            return Results.BadRequest(user.error);
+
                         }
-                        var userService = context.RequestServices.GetService<IUsersService>();
-                        await userService!.CreateNewUserAsync(user.user!);
-                        var jwtGenerate = context.RequestServices.GetService<IJwtProvider>();
-                        var claims = new List<Claim>()
+                        else
+                        {
+
+
+                            var user = Users.Create(login, password);
+                            if (!string.IsNullOrEmpty(user.error))
+                            {
+                                return Results.BadRequest(user.error);
+                            }
+                            var userService = context.RequestServices.GetService<IUsersService>();
+                            await userService!.CreateNewUserAsync(user.user!);
+                            var jwtGenerate = context.RequestServices.GetService<IJwtProvider>();
+                            var claims = new List<Claim>()
                         {
                             new Claim(ClaimTypes.Role, user.user!.Role)
                         };
-                        var token = jwtGenerate!.GenerateToken(new JwtRequest()
-                        {
-                            Claims = claims
-                        });
-                        context.Response.Cookies.Append("jwt", token!);
-                        return Results.Redirect("/index.html");
+                            var token = jwtGenerate!.GenerateToken(new JwtRequest()
+                            {
+                                Claims = claims
+                            });
+                            context.Response.Cookies.Append("jwt", token!);
+                            return Results.Redirect("/index.html");
+                        }
                     }
                     return Results.BadRequest("Ошибка передачи данных. Попробуйте еще раз");
                 }
