@@ -82,7 +82,7 @@ namespace OnlineBank.Web.Endpoints
                         string cvv = dataContext["cvv"]!.ToString();
                         string login = dataContext["login"]!.ToString();
                         string password = dataContext["password"]!.ToString();
-                        var user = Users.Create(login, password, numberCard, dateEnd, cvv);
+                        var user = Users.Create(login, password);
                         if (!string.IsNullOrEmpty(user.error))
                         {
                             return Results.BadRequest(user.error);
@@ -132,6 +132,7 @@ namespace OnlineBank.Web.Endpoints
                         {
                             return Results.BadRequest(userData.error);
                         }
+
 
                     }
                     return Results.BadRequest("Ошибка передачи данных. Попробуйте еще раз");

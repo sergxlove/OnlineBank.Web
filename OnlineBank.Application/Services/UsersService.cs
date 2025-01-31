@@ -38,11 +38,6 @@ namespace OnlineBank.Application.Services
             return await _usersRepository.UpdatePassword(login, password);
         }
 
-        public async Task<int> UpdateDataUserAsync(Users user)
-        {
-            return await _usersRepository.Update(user);
-        }
-
         public async Task<int> DeleteUserAsync(string login)
         {
             return await _usersRepository.Delete(login);

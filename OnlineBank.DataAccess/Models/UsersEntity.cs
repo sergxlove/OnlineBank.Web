@@ -8,12 +8,6 @@
 
         public string Password { get; set; } = string.Empty;
 
-        public string NumberCard { get; set; } = string.Empty;
-
-        public string DateEnd { get; set; } = string.Empty;
-
-        public string Cvv { get; set; } = string.Empty;
-
         public string Role { get; set; } = string.Empty;
 
         public DataUsersEntity? DataUsers {  get; set; }
