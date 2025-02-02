@@ -2,7 +2,7 @@ async function CreateUser(numberCard, dateEnd, cvv, login, password) {
     DisabledButton("regBtn");
     try {
         const checkLogin = document.getElementById("checkLogin").checked;
-        const response = await fetch("/api/createUser", {
+        const response = await fetch("/api/restoreUser", {
             method: "POST",
             headers: {
                 "Accept": "application/json",

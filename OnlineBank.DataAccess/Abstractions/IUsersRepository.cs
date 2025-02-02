@@ -9,6 +9,8 @@ namespace OnlineBank.DataAccess.Abstractions
         Task<int> Delete(string login);
         Task<Users?> GetAsync(string login);
         Task<string?> GetPasswordAsync(string login);
+        Task<string> GetLoginAsync(Guid? id);
+        Task<string> GetRoleAsync(string login);
         Task<int> UpdatePassword(string login, string password);
     }
 }

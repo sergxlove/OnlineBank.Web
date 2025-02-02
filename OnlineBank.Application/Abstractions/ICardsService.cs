@@ -7,5 +7,6 @@ namespace OnlineBank.Application.Abstractions
         Task<Guid> AddNewCard(RequestCards request);
         Task<Guid> AddNewCard(string numberCard, string dateEnd, string cvv, Guid userId);
         Task<int> DeleteCard(string numberCard);
+        Task<Guid?> VerifyCard(string numberCard, string dateEnd, string cvv);
     }
 }

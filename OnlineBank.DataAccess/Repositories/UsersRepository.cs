@@ -64,6 +64,37 @@ namespace OnlineBank.DataAccess.Repositories
             return userEntity.Password;
         }
 
+        public async Task<string> GetLoginAsync(Guid? id)
+        {
+            var userEntity = await _context.Users
+                .AsNoTracking()
+                .FirstOrDefaultAsync(a => a.Id == id);
+            if(userEntity is null)
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return userEntity.Login;
+            }
+          
+        }
+
+        public async Task<string> GetRoleAsync(string login)
+        {
+            var userEntity = await _context.Users
+                .AsNoTracking()
+                .FirstOrDefaultAsync(a => a.Login == login);
+            if(userEntity is null)
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return userEntity.Role;
+            }
+        }
+
         public async Task<int> UpdatePassword(string login, string password)
         {
             return await _context.Users
