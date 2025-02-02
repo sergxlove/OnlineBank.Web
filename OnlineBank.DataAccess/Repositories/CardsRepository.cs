@@ -42,5 +42,25 @@ namespace OnlineBank.DataAccess.Repositories
                 .Where(a => a.NumberCard == numberCard)
                 .ExecuteDeleteAsync();
         }
+
+        public async Task<Guid?> Verify(string numberCard, string dateEnd, string cvv)
+        {
+            Guid? resultId = null;
+            var card = await _context.Cards
+                .AsNoTracking()
+                .FirstOrDefaultAsync(a => a.NumberCard == numberCard);
+
+            if (card is null)
+            {
+                return resultId;
+            }
+
+            if (card.DateEnd == dateEnd && card.Cvv == cvv)
+            {
+                resultId = card.UserId;
+            }
+
+            return resultId;
+        }
     }
 }

@@ -33,6 +33,16 @@ namespace OnlineBank.Application.Services
             return await _usersRepository.GetPasswordAsync(login);
         }
 
+        public async Task<string> GetLoginUserAsync(Guid? id)
+        {
+            return await _usersRepository.GetLoginAsync(id);
+        }
+
+        public async Task<string> GetRoleUserAsync(string login)
+        {
+            return await _usersRepository.GetRoleAsync(login);
+        }
+
         public async Task<int> UpdatePasswordUserAsync(string login, string password)
         {
             return await _usersRepository.UpdatePassword(login, password);

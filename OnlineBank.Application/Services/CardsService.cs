@@ -1,6 +1,7 @@
 ﻿using OnlineBank.Application.Abstractions;
 using OnlineBank.DataAccess.Abstractions;
 using OnlineBank.DataAccess.Contracts.Requests;
+using System.Globalization;
 
 namespace OnlineBank.Application.Services
 {
@@ -26,6 +27,11 @@ namespace OnlineBank.Application.Services
         public async Task<int> DeleteCard(string numberCard)
         {
             return await _repository.Delete(numberCard);
+        }
+
+        public async Task<Guid?> VerifyCard(string numberCard, string dateEnd, string cvv)
+        {
+            return await _repository.Verify(numberCard, dateEnd, cvv);
         }
     }
 }

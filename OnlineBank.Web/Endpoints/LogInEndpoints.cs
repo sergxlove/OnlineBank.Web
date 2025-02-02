@@ -68,7 +68,7 @@ namespace OnlineBank.Web.Endpoints
                 }
 
             });
-            app.MapPost("/api/createUser", async (HttpContext context) =>
+            app.MapPost("/api/restoreUser", async (HttpContext context) =>
             {
                 try
                 {
@@ -83,26 +83,34 @@ namespace OnlineBank.Web.Endpoints
                         string login = dataContext["login"]!.ToString();
                         string password = dataContext["password"]!.ToString();
                         bool checkLogin = (bool)dataContext["checkLogin"]!;
+                        var user = Users.Create(login, password);
+                        if(!string.IsNullOrEmpty(user.error))
+                        {
+                            return Results.BadRequest(user.error);
+                        }
                         if(checkLogin is true)
                         {
 
                         }
                         else
                         {
-
-
-                            var user = Users.Create(login, password);
-                            if (!string.IsNullOrEmpty(user.error))
+                            var cardService = context.RequestServices.GetService<ICardsService>();
+                            Guid? userId = await cardService!.VerifyCard(numberCard, dateEnd, cvv);
+                            if(userId is null)
                             {
-                                return Results.BadRequest(user.error);
+                                return Results.BadRequest("Не удалось найти пользователя");
                             }
                             var userService = context.RequestServices.GetService<IUsersService>();
-                            await userService!.CreateNewUserAsync(user.user!);
+                            if(login != await userService!.GetLoginUserAsync(userId))
+                            {
+                                return Results.BadRequest("Логины не совпадают");
+                            }
+                            await userService.UpdatePasswordUserAsync(login, password);
                             var jwtGenerate = context.RequestServices.GetService<IJwtProvider>();
                             var claims = new List<Claim>()
-                        {
-                            new Claim(ClaimTypes.Role, user.user!.Role)
-                        };
+                            {
+                            new Claim(ClaimTypes.Role, await userService.GetRoleUserAsync(login))
+                            };
                             var token = jwtGenerate!.GenerateToken(new JwtRequest()
                             {
                                 Claims = claims
