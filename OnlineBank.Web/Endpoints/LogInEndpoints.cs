@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json.Linq;
 using OnlineBank.Application.Abstractions;
+using OnlineBank.Core.Contracts;
 using OnlineBank.Core.Models;
+using OnlineBank.DataAccess.Contracts.Requests;
 using OnlineBank.Infrastructure.Abstractions;
 using OnlineBank.Infrastructure.Contracts;
 using System.Security.Claims;
@@ -16,7 +18,7 @@ namespace OnlineBank.Web.Endpoints
                 context.Response.Cookies.Delete("jwt");
                 return Results.Ok();
             }).RequireAuthorization("OnlyForAuthUser");
-         
+
             app.MapPost("/api/users", async (HttpContext context) =>
             {
                 try
@@ -61,7 +63,7 @@ namespace OnlineBank.Web.Endpoints
                     }
                     return Results.BadRequest("Ошибка передачи данных. Попробуйте еще раз");
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     context.Response.StatusCode = 500;
                     return Results.Text(ex.Message);
@@ -84,11 +86,11 @@ namespace OnlineBank.Web.Endpoints
                         string password = dataContext["password"]!.ToString();
                         bool checkLogin = (bool)dataContext["checkLogin"]!;
                         var user = Users.Create(login, password);
-                        if(!string.IsNullOrEmpty(user.error))
+                        if (!string.IsNullOrEmpty(user.error))
                         {
                             return Results.BadRequest(user.error);
                         }
-                        if(checkLogin is true)
+                        if (checkLogin is true)
                         {
 
                         }
@@ -96,12 +98,12 @@ namespace OnlineBank.Web.Endpoints
                         {
                             var cardService = context.RequestServices.GetService<ICardsService>();
                             Guid? userId = await cardService!.VerifyCard(numberCard, dateEnd, cvv);
-                            if(userId is null)
+                            if (userId is null)
                             {
                                 return Results.BadRequest("Не удалось найти пользователя");
                             }
                             var userService = context.RequestServices.GetService<IUsersService>();
-                            if(login != await userService!.GetLoginUserAsync(userId))
+                            if (login != await userService!.GetLoginUserAsync(userId))
                             {
                                 return Results.BadRequest("Логины не совпадают");
                             }
@@ -109,7 +111,7 @@ namespace OnlineBank.Web.Endpoints
                             var jwtGenerate = context.RequestServices.GetService<IJwtProvider>();
                             var claims = new List<Claim>()
                             {
-                            new Claim(ClaimTypes.Role, await userService.GetRoleUserAsync(login))
+                                new Claim(ClaimTypes.Role, await userService.GetRoleUserAsync(login))
                             };
                             var token = jwtGenerate!.GenerateToken(new JwtRequest()
                             {
@@ -150,14 +152,46 @@ namespace OnlineBank.Web.Endpoints
                         {
                             return Results.BadRequest(userData.error);
                         }
-
-
+                        var user = Users.Create(login, password);
+                        if (!string.IsNullOrEmpty(user.error))
+                        {
+                            return Results.BadRequest(user.error);
+                        }
+                        var cardService = context.RequestServices.GetService<ICardsService>();
+                        var dataUserService = context.RequestServices.GetService<IDataUsersService>();
+                        var userService = context.RequestServices.GetService<IUsersService>();
+                        await userService!.CreateNewUserAsync(user.user!);
+                        RequestDataUsers request = new()
+                        {
+                            Id = user.user!.Id,
+                            FirstName = firstName,
+                            SecondName = secondName,
+                            LastName = lastName,
+                            DateBirth = dateBirth,
+                            PassportData = passportData,
+                            NumberPhone = numberPhone,
+                            Email = email
+                        };
+                        await dataUserService!.AddNewDataUserAsync(request);
+                        await cardService!.AddNewCard(await cardService.GenerateNumberCard(),
+                            cardService.GenerateDateEnd(), cardService.GenerateCvv(), user.user!.Id);
+                        var jwtGenerate = context.RequestServices.GetService<IJwtProvider>();
+                        var claims = new List<Claim>()
+                            {
+                                new Claim(ClaimTypes.Role, await userService.GetRoleUserAsync(login))
+                            };
+                        var token = jwtGenerate!.GenerateToken(new JwtRequest()
+                        {
+                            Claims = claims
+                        });
+                        context.Response.Cookies.Append("jwt", token!);
+                        return Results.Redirect("/index.html");
                     }
                     return Results.BadRequest("Ошибка передачи данных. Попробуйте еще раз");
                 }
                 catch (Exception ex)
                 {
-                    context.Response.StatusCode = 500; 
+                    context.Response.StatusCode = 500;
                     return Results.Text(ex.Message);
                 }
             });
