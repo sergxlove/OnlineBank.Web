@@ -12,5 +12,6 @@ namespace OnlineBank.Application.Abstractions
         Task<string> GetLoginUserAsync(Guid? id);
         Task<string> GetRoleUserAsync(string login);
         Task<int> UpdatePasswordUserAsync(string login, string password);
+        Task<int> UpdateLoginAndPasswordAsync(Guid id, string login, string password);
     }
 }

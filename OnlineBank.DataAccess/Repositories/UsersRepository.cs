@@ -104,6 +104,16 @@ namespace OnlineBank.DataAccess.Repositories
                 s.SetProperty(a => a.Password, password));
         }
 
+        public async Task<int> UpdateLoginAndPassword(Guid id, string login, string password)
+        {
+            return await _context.Users
+                .AsNoTracking()
+                .Where(a => a.Id == id)
+                .ExecuteUpdateAsync(s => 
+                s.SetProperty(a=> a.Login, login)
+                .SetProperty(a => a.Password, password));
+        }
+
         public async Task<int> Delete(string login)
         {
             return await _context.Users

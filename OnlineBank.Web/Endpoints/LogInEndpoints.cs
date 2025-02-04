@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
 using OnlineBank.Application.Abstractions;
-using OnlineBank.Core.Contracts;
 using OnlineBank.Core.Models;
 using OnlineBank.DataAccess.Contracts.Requests;
 using OnlineBank.Infrastructure.Abstractions;
@@ -92,7 +91,25 @@ namespace OnlineBank.Web.Endpoints
                         }
                         if (checkLogin is true)
                         {
-
+                            var cardService = context.RequestServices.GetService<ICardsService>();
+                            Guid? userId = await cardService!.VerifyCard(numberCard, dateEnd, cvv);
+                            if(userId is null)
+                            {
+                                return Results.BadRequest("Не удалось найти пользователя");
+                            }
+                            var userService = context.RequestServices.GetService<IUsersService>();
+                            await userService!.UpdateLoginAndPasswordAsync(userId.Value, login, password);
+                            var jwtGenerate = context.RequestServices.GetService<IJwtProvider>();
+                            var claims = new List<Claim>()
+                            {
+                                new Claim(ClaimTypes.Role, await userService.GetRoleUserAsync(login))
+                            };
+                            var token = jwtGenerate!.GenerateToken(new JwtRequest()
+                            {
+                                Claims = claims
+                            });
+                            context.Response.Cookies.Append("jwt", token!);
+                            return Results.Redirect("/index.html");
                         }
                         else
                         {
@@ -146,7 +163,7 @@ namespace OnlineBank.Web.Endpoints
                         string numberPhone = json["numberPhone"]!.ToString();
                         string email = json["email"]!.ToString();
                         string login = json["loginUser"]!.ToString();
-                        string password = json["loginPassword"]!.ToString();
+                        string password = json["passwordUser"]!.ToString();
                         var userData = DataUsers.Create(firstName, secondName, lastName, dateBirth, passportData, numberPhone, email);
                         if (!string.IsNullOrEmpty(userData.error))
                         {

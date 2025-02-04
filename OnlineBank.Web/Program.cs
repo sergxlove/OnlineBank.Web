@@ -1,15 +1,12 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json.Linq;
 using OnlineBank.Application.Abstractions;
 using OnlineBank.Application.Services;
-using OnlineBank.Core.Models;
 using OnlineBank.DataAccess;
 using OnlineBank.DataAccess.Abstractions;
 using OnlineBank.DataAccess.Repositories;
 using OnlineBank.Infrastructure;
 using OnlineBank.Infrastructure.Abstractions;
-using OnlineBank.Infrastructure.Contracts;
 using OnlineBank.Web.Extensions;
 using System.Security.Claims;
 using System.Text; 
@@ -24,12 +21,12 @@ namespace OnlineBank.Web
             builder.Services.AddDbContext<DbContextSqlite>();
             builder.Services.AddScoped<IUsersRepository, UsersRepository>();
             builder.Services.AddScoped<IUsersService, UsersService>();
+            builder.Services.AddScoped<ISystemTableRepository, SystemTableRepository>();
+            builder.Services.AddScoped<ISystemTableService, SystemTableService>();
             builder.Services.AddScoped<ICardsRepository, CardsRepository>();
             builder.Services.AddScoped<ICardsService, CardsService>();
             builder.Services.AddScoped<IDataUsersRepository, DataUsersRepository>();
             builder.Services.AddScoped<IDataUsersService, DataUsersService>();
-            builder.Services.AddSingleton<ISystemTableRepository, SystemTableRepository>();
-            builder.Services.AddSingleton<ISystemTableService, SystemTableService>();
             builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
             builder.Services.AddScoped<IJwtProvider, JwtProvider>();
 
