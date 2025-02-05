@@ -74,10 +74,14 @@ document.getElementById("cardBtn").addEventListener("click", async (event) => {
     const firstName = document.getElementById("firstName").value;
     const secondName = document.getElementById("secondName").value;
     const lastName = document.getElementById("lastName").value;
+    const dateBirth = document.getElementById("dateBirth").value;
+    const [year, month, day] = dateBirth.split("-");
+    const formatedDateBirth = `${day}.${month}.${year}`;
     const passportData = document.getElementById("passportData").value;
     const numberPhone = document.getElementById("numberPhone").value;
+    const email = document.getElementById("email").value;
     const login = document.getElementById("loginUser").value;
     const password = document.getElementById("passwordUser").value;
-    await CreateCard(firstName, secondName, lastName, dateBirth, passportData, numberPhone, email,
+    await CreateCard(firstName, secondName, lastName, formatedDateBirth, passportData, numberPhone, email,
         login, password);
 })
