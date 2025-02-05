@@ -177,6 +177,10 @@ namespace OnlineBank.Web.Endpoints
                         var cardService = context.RequestServices.GetService<ICardsService>();
                         var dataUserService = context.RequestServices.GetService<IDataUsersService>();
                         var userService = context.RequestServices.GetService<IUsersService>();
+                        if(await userService!.CheckHaveUserAsync(login) is true)
+                        {
+                            return Results.BadRequest("Пользователь с таким логином уже существует");
+                        }
                         await userService!.CreateNewUserAsync(user.user!);
                         RequestDataUsers request = new()
                         {
