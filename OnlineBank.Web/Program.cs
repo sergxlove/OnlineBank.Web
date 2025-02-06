@@ -28,6 +28,7 @@ namespace OnlineBank.Web
             builder.Services.AddScoped<IDataUsersRepository, DataUsersRepository>();
             builder.Services.AddScoped<IDataUsersService, DataUsersService>();
             builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
+            builder.Services.AddSingleton<IPasswordHasherService, PasswordHasherService>();
             builder.Services.AddScoped<IJwtProvider, JwtProvider>();
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
