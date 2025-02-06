@@ -1,4 +1,10 @@
-﻿namespace OnlineBank.Core.Models
+﻿using OnlineBank.Core.Interfaces;
+using OnlineBank.Core.Services.PasswordHashers;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace OnlineBank.Core.Models
 {
     public class Users
     {
@@ -18,7 +24,7 @@
 
         public string Login { get; } = string.Empty;
 
-        public string Password { get; } = string.Empty;
+        public string Password { get; private set; } = string.Empty;
 
         public string Role { get; } = string.Empty;
 
@@ -26,7 +32,7 @@
 
         public List<Cards> Cards { get; } = [];
 
-        public static (Users? user, string error) Create(string login, string password)
+        public static (Users? user, string error) Create(string login, string password, Func<string, string> hashMethod)
         {
             Users? newUser = null;
             string error = string.Empty;
@@ -51,10 +57,25 @@
                 return (newUser, error);
             }
             
-            newUser = new(Guid.NewGuid(), login, password);
+            newUser = new(Guid.NewGuid(), login, hashMethod(password));
             return (newUser, error);
         }
 
-
+        public static (Users? user, string error) Create(string login, string password)
+        {
+            return Create(login, password, a =>
+            {
+                using (SHA256 sha256 = SHA256.Create())
+                {
+                    byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(a));
+                    StringBuilder builder = new StringBuilder();
+                    foreach (byte b in bytes)
+                    {
+                        builder.Append(b.ToString("x2"));
+                    }
+                    return builder.ToString();
+                }
+            });
+        }
     }
 }

@@ -10,6 +10,7 @@ namespace OnlineBank.Web.Endpoints
 {
     public static class LogInEndpoints
     {
+
         public static IEndpointRouteBuilder MapLogInEndpoints(this IEndpointRouteBuilder app)
         {
             app.MapGet("/logout", (HttpContext context) =>
@@ -84,7 +85,8 @@ namespace OnlineBank.Web.Endpoints
                         string login = dataContext["login"]!.ToString();
                         string password = dataContext["password"]!.ToString();
                         bool checkLogin = (bool)dataContext["checkLogin"]!;
-                        var user = Users.Create(login, password);
+                        var passwordHasherService = app.ServiceProvider.GetService<IPasswordHasherService>();
+                        var user = Users.Create(login, password, passwordHasherService!.GenerateHashPassword);
                         if (!string.IsNullOrEmpty(user.error))
                         {
                             return Results.BadRequest(user.error);
@@ -169,7 +171,8 @@ namespace OnlineBank.Web.Endpoints
                         {
                             return Results.BadRequest(userData.error);
                         }
-                        var user = Users.Create(login, password);
+                        var passwordHasherService = app.ServiceProvider.GetService<IPasswordHasherService>();
+                        var user = Users.Create(login, password, passwordHasherService!.GenerateHashPassword);
                         if (!string.IsNullOrEmpty(user.error))
                         {
                             return Results.BadRequest(user.error);
@@ -181,6 +184,7 @@ namespace OnlineBank.Web.Endpoints
                         {
                             return Results.BadRequest("Пользователь с таким логином уже существует");
                         }
+
                         await userService!.CreateNewUserAsync(user.user!);
                         RequestDataUsers request = new()
                         {
