@@ -40,11 +40,12 @@ namespace OnlineBank.Web.Endpoints
                         {
                             return Results.BadRequest("Пользователь не найден");
                         }
-                        var passwordHasher = app.ServiceProvider.GetService<IPasswordHasher>();
-                        if (passwordHasher!.Verify(password, userPassword))
+                        var passwordHasher = app.ServiceProvider.GetService<IPasswordHasherService>();
+                        if (passwordHasher!.VerifyUser(password, userPassword))
                         {
                             var jwtGenerate = context.RequestServices.GetService<IJwtProvider>();
-                            var user = await userServise.GetUserAsync(login);
+                            var user = new Users(await userServise.GetUserAsync(login) 
+                                ?? throw new Exception("Произошла ошибка"));
                             var claims = new List<Claim>()
                             {
                                 new Claim(ClaimTypes.Role, user!.Role)

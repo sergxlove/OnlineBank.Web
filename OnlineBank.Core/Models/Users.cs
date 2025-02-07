@@ -1,7 +1,4 @@
-﻿using OnlineBank.Core.Interfaces;
-using OnlineBank.Core.Services.PasswordHashers;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 
 namespace OnlineBank.Core.Models
@@ -20,11 +17,20 @@ namespace OnlineBank.Core.Models
             Password = password;
             Role = "user";
         }
+
+        public Users(Users user)
+        {
+            Id = user.Id;
+            Login = user.Login;
+            Password = user.Password;
+            Role = user.Role;
+        }
+
         public Guid Id { get; }
 
         public string Login { get; } = string.Empty;
 
-        public string Password { get; private set; } = string.Empty;
+        public string Password { get; } = string.Empty;
 
         public string Role { get; } = string.Empty;
 
@@ -51,7 +57,7 @@ namespace OnlineBank.Core.Models
                 error = $"Отсутствует значение password";
                 return (newUser, error);
             }
-            if (password.Length < MIN_LENGTH_PASSWORD || password.Length > MAX_LENGTH_PASSWORD)
+            if (password.Length < MIN_LENGTH_PASSWORD)
             {
                 error = $"Значение password должно иметь от {MIN_LENGTH_PASSWORD} до {MAX_LENGTH_PASSWORD} символов";
                 return (newUser, error);

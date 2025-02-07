@@ -8,6 +8,7 @@ namespace OnlineBank.Web.Extensions
         {
             app.MapGettingPagesEndpoints();
             app.MapLogInEndpoints();
+            app.MapPaymentsEndpoints();
             return app;
         }
     }
