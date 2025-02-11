@@ -6,35 +6,30 @@
 
 .container {
     display: flex;
-    justify-content: space-between; /* Блоки прижимаются к краям контейнера */
-    align-items: center; /* Центрирование по вертикали */
-    width: 75%; /* Ширина контейнера 75% от окна */
-    margin: 0 auto; /* Центрирование контейнера по горизонтали */
-    height: 100vh; /* Занимает всю высоту окна */
+    justify-content: space-between; 
+    align-items: center;
+    width: 50%; 
 }
 
 .item {
-    height: 200px; /* Высота блоков */
-    flex: 1; /* Блоки занимают доступное пространство */
-    margin: 0 10px; /* Отступы между блоками */
+    height: 200px; 
+    flex: 1; 
+    margin: 0 10px; 
 }
 
-.leftPanel {
-    background-color: #f0f0f0; /* Цвет фона */
-}
-
-.mainPanel {
-    background-color: #d0d0d0; /* Цвет фона */
+.card {
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 @media (max-width: 768px) {
     .container {
-        max-width: 90%; /* Увеличиваем ширину контейнера на узких экранах */
+        max-width: 90%; 
     }
 }
 
 @media (max-width: 480px) {
     .container {
-        max-width: 95%; /* Еще больше увеличиваем ширину на очень узких экранах */
+        max-width: 95%;
     }
 }
