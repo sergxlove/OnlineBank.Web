@@ -38,6 +38,8 @@ namespace OnlineBank.Core.Models
 
         public List<Cards> Cards { get; } = [];
 
+        public List<BankScore> BankScores { get; } = [];
+
         public static (Users? user, string error) Create(string login, string password, Func<string, string> hashMethod)
         {
             Users? newUser = null;
