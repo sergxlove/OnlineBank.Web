@@ -1,4 +1,6 @@
-﻿namespace OnlineBank.DataAccess.Models
+﻿using OnlineBank.Core.Models;
+
+namespace OnlineBank.DataAccess.Models
 {
     public class UsersEntity
     {
@@ -13,5 +15,7 @@
         public DataUsersEntity? DataUsers {  get; set; }
 
         public List<CardsEntity> Cards { get; set; } = [];
+
+        public List<BankScoreEntity> BankScores { get; } = [];
     }
 }
