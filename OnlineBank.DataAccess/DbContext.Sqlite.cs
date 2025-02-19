@@ -17,6 +17,8 @@ namespace OnlineBank.DataAccess
 
         public DbSet<CardsEntity> Cards { get; set; }
 
+        public DbSet<BankScoreEntity> BanksScore { get; set; }
+
         public DbSet<SystemTableEntity> SystemTable { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -29,6 +31,7 @@ namespace OnlineBank.DataAccess
             modelBuilder.ApplyConfiguration(new DataUsersConfiguration());
             modelBuilder.ApplyConfiguration(new UsersConfiguration());
             modelBuilder.ApplyConfiguration(new CardsConfiguration());
+            modelBuilder.ApplyConfiguration(new BankScoreConfiguration());
             modelBuilder.ApplyConfiguration(new SystemTableConfiguration());
             base.OnModelCreating(modelBuilder);
         }

@@ -13,5 +13,9 @@
         public Guid UserId { get; set; }
 
         public UsersEntity? User { get; set; }
+
+        public Guid? BankScoreId { get; }
+
+        public BankScoreEntity? BankScore { get; }
     }
 }
