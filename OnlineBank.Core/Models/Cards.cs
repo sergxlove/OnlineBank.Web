@@ -19,9 +19,7 @@ namespace OnlineBank.Core.Models
 
         public Users? User { get; }
 
-        public Guid? BankScoreId { get; }
-
-        public BankScore? BankScore { get; }
+        public List<BankScore> Scores { get; } = [];
 
 
         private Cards(string numberCard, string dateEnd, string cvv, Guid userId)

@@ -15,9 +15,7 @@ namespace OnlineBank.DataAccess.Configurations
                 .WithMany(a => a.Cards)
                 .HasForeignKey(a => a.UserId);
 
-            builder.HasOne(a => a.BankScore)
-                .WithOne(a => a.Cards)
-                .HasForeignKey<BankScoreEntity>(a => a.Id);
+            
         }
     }
 }
